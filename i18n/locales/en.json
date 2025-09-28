@@ -1,0 +1,139 @@
+{
+    "welcome": "Welcome",
+    "nav": {
+        "home": "Home",
+        "services": "Services",
+        "portfolio": "Portfolio",
+        "contacts": "Contacts"
+    },
+    "footer": {
+        "privacy_policy": "Privacy Policy"
+    },
+    "contacts": {
+        "title": "Contact Us",
+        "subtitle": "Here's how you can reach us for any questions or issues.",
+        "phone_title": "Phone",
+        "email_title": "Email",
+        "address_title": "Address",
+        "form": {
+            "name": "Name",
+            "email": "Email",
+            "message": "Message",
+            "submit": "Send"
+        }
+    },
+    "privacy_policy": {
+        "title": "Privacy Policy",
+        "last_updated": "Last updated",
+        "introduction": {
+            "title": "Introduction",
+            "content": "Welcome to K.M.Construction. We are committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website."
+        },
+        "information_collection": {
+            "title": "Information Collection",
+            "content": "We may collect personal information from you such as your name, email address, and message when you fill out our contact form."
+        },
+        "use_of_information": {
+            "title": "Use of Information",
+            "content": "We use the information we collect to:",
+            "item1": "Respond to your inquiries and provide customer service.",
+            "item2": "Improve our website and services.",
+            "item3": "Send you updates and promotional materials, if you opt-in."
+        },
+        "contact_us": {
+            "title": "Contact Us",
+            "content": "If you have any questions about this Privacy Policy, please contact us at:"
+        }
+    },
+    "home": {
+        "hero": {
+            "title": "K.M.Construction in Cyprus",
+            "subtitle": "Our company K.M.Construction carries out a full range of construction and installation works for residential and commercial premises.",
+            "cta_phone": "Call me",
+            "cta_services": "Services"
+        },
+        "services": {
+            "title": "Services",
+            "subtitle": "We provide a full range of professional services in the field of construction, reconstruction and design.",
+            "read_more": "Read more",
+            "descriptions": {
+                "new_construction": "Providing construction services in Cyprus in compliance with all rules and regulations. With us, you will receive a full range of construction services: from design to full implementation and commissioning.",
+                "comprehensive_renovation": "Comprehensive services for private and business projects: with us, your property will acquire a new look and a modernized technological solution.",
+                "facade_works": "The facade plays an important role in the life of a building: it is its protection, thermal insulation, and decorative element... And in combination with decor, it will not only please the eye but also be beneficial to health.",
+                "floor_sanding": "Modern solutions in the field of concrete and stone floors. We will offer the best solutions to make your floor better.",
+                "concrete_injection": "The injection method allows for the local filling of cracks in a concrete surface, eliminating leaks and restoring the waterproofing properties of the structure. Our company's specialists strengthen load-bearing structures without complex and expensive construction and repair work."
+            }
+        },
+        "portfolio": {
+            "title": "Portfolio",
+            "subtitle": "Each of our projects is unique and special.",
+            "view_all": "View all projects"
+        },
+        "cta": {
+            "title": "Want to start a project with us?",
+            "subtitle": "Contact us with any questions today. Want to know more? Write or call us!"
+        }
+    },
+    "services": {
+        "sub_services_title": "Sub-services",
+        "floor_sanding": "Floor Sanding",
+        "concrete_injection": "Concrete Injection",
+        "new_construction": "New Construction",
+        "comprehensive_renovation": "Comprehensive Renovation",
+        "facade_works": "Facade Works",
+        "monolithic_works": "Monolithic Works",
+        "sub": {
+            "design": "Design of residential and non-residential premises",
+            "excavation": "Excavation works",
+            "foundation": "Foundation",
+            "reinforced_concrete": "Reinforced concrete works",
+            "wall_construction": "Wall construction",
+            "finishing_works": "Finishing works",
+            "roofing_works": "Roofing works",
+            "pools": "Pools",
+            "hydro_thermal_insulation": "Hydro and thermal insulation",
+            "supervision_control": "Supervision and control of construction works",
+            "concrete_reinforcement": "Reinforcement of reinforced concrete",
+            "floor_dismantling": "Dismantling of existing floor coverings",
+            "screed_flooring": "Screed and floor coverings",
+            "wall_cladding": "Wall cladding and finishing",
+            "door_installation": "Installation of doors, sills, baseboards",
+            "hydro_thermal_insulation_reno": "Hydro and thermal insulation",
+            "utility_replacement": "Replacement of old utilities",
+            "facade_restoration": "Facade restoration",
+            "painting": "Painting",
+            "cladding": "Cladding",
+            "facade_insulation": "Facade insulation",
+            "decorative_finishing": "Decorative finishing",
+            "roof_installation": "Roof installation and arrangement",
+            "natural_stone": "Sanding of natural stone floors (travertine, marble, granite)",
+            "concrete_floor": "Sanding of concrete floors",
+            "injection_waterproofing": "Injection waterproofing of concrete",
+            "crack_injection": "Injection of cracks in concrete",
+            "cold_joint_injection": "Injection of cold joints",
+            "concreting_joints": "Concreting (working joints)",
+            "construction_joint_injection": "Injection of concrete construction joints",
+            "entry_injection": "Injection of entries through reinforced concrete structures",
+            "masonry_injection": "Injection of brickwork",
+            "monolithic_construction": "Monolithic construction",
+            "concrete_pouring": "Pouring of concrete structures",
+            "reinforcement_concreting": "Reinforcement and concreting",
+            "monolithic_floors": "Construction of monolithic floors",
+            "monolithic_walls": "Erection of monolithic walls",
+            "stairs_retaining_walls": "Construction of stairs and retaining walls"
+        }
+    },
+    "portfolio": {
+        "floor_sanding": "Floor Sanding",
+        "monolithic_works": "Monolithic Works",
+        "extension_construction": "Extension Construction",
+        "roof_repair": "Roof Repair",
+        "descriptions": {
+            "floor_sanding": "Examples of projects for sanding floors made of natural stone and concrete",
+            "monolithic_works": "Projects of monolithic construction and concrete works",
+            "extension_construction": "Examples of extensions to existing buildings",
+            "roof_repair": "Projects for the repair and renovation of roofing"
+        }
+    }
+}
+  
