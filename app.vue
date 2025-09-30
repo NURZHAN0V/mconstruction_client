@@ -2,9 +2,5 @@
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>
-  <BackToTop />
+  <CommonBackToTop />
 </template>
-
-<script setup>
-import BackToTop from '~/components/common/BackToTop.vue'
-</script>

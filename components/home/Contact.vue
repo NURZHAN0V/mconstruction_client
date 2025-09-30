@@ -35,7 +35,7 @@
               </div>
               <div>
                 <h3 class="font-bold text-lg text-dark">{{ $t('contacts.address_title') }}</h3>
-                <p class="text-gray-700">Menelaiou Kakoianni 16, Yeroskipou, Paphos 8201</p>
+                <p class="text-gray-700">Менелау Какоянни 16. Ероскипу, Пафос 8201</p>
               </div>
             </div>
           </div>
@@ -80,8 +80,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
 const form = ref({
   name: '',
   email: '',

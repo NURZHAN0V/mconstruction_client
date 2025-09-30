@@ -97,8 +97,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, onMounted, onUnmounted } from 'vue'
-
 const { locale, locales, setLocale } = useI18n()
 const localePath = useLocalePath()
 
@@ -127,24 +125,28 @@ const closeMenu = (menu: keyof typeof menuState) => {
   menuState[menu] = false
 }
 
-const handleClickOutside = (event: MouseEvent) => {
-  if (servicesMenuRef.value && !servicesMenuRef.value.contains(event.target as Node)) {
-    closeMenu('services');
-  }
-  if (portfolioMenuRef.value && !portfolioMenuRef.value.contains(event.target as Node)) {
-    closeMenu('portfolio');
-  }
-  if (langMenuRef.value && !langMenuRef.value.contains(event.target as Node)) {
-    closeMenu('lang');
-  }
-}
+let handleClickOutside: ((event: MouseEvent) => void) | null = null
 
 onMounted(() => {
+  handleClickOutside = (event: MouseEvent) => {
+    if (servicesMenuRef.value && !servicesMenuRef.value.contains(event.target as Node)) {
+      closeMenu('services');
+    }
+    if (portfolioMenuRef.value && !portfolioMenuRef.value.contains(event.target as Node)) {
+      closeMenu('portfolio');
+    }
+    if (langMenuRef.value && !langMenuRef.value.contains(event.target as Node)) {
+      closeMenu('lang');
+    }
+  }
   document.addEventListener('click', handleClickOutside);
 });
 
 onUnmounted(() => {
-  document.removeEventListener('click', handleClickOutside);
+  if (handleClickOutside) {
+    document.removeEventListener('click', handleClickOutside);
+    handleClickOutside = null;
+  }
 });
 
 

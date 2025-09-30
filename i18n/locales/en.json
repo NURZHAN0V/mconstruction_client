@@ -1,5 +1,14 @@
 {
     "welcome": "Welcome",
+    "breadcrumbs": {
+        "home": "Home"
+    },
+    "action_buttons": {
+        "call": "Call",
+        "email": "Email",
+        "back_to_portfolio": "Back to Portfolio",
+        "back_to_services": "Back to Services"
+    },
     "nav": {
         "home": "Home",
         "services": "Services",
@@ -11,7 +20,7 @@
     },
     "contacts": {
         "title": "Contact Us",
-        "subtitle": "Here's how you can reach us for any questions or issues.",
+        "subtitle": "Here's how you can contact us for any questions or concerns.",
         "phone_title": "Phone",
         "email_title": "Email",
         "address_title": "Address",
@@ -47,7 +56,7 @@
     },
     "home": {
         "hero": {
-            "title": "K.M.Construction in Cyprus",
+            "title": "K.M Construction in Cyprus",
             "subtitle": "Our company K.M.Construction carries out a full range of construction and installation works for residential and commercial premises.",
             "cta_phone": "Call me",
             "cta_services": "Services"
@@ -72,6 +81,26 @@
         "cta": {
             "title": "Want to start a project with us?",
             "subtitle": "Contact us with any questions today. Want to know more? Write or call us!"
+        },
+        "why_choose_us": {
+            "title": "Why Choose Us?",
+            "subtitle": "We provide professional construction services in compliance with all quality standards",
+            "quality": {
+                "title": "Quality",
+                "description": "We use only quality materials and modern technologies"
+            },
+            "speed": {
+                "title": "Speed", 
+                "description": "Fast execution of work without loss of quality"
+            },
+            "guarantee": {
+                "title": "Guarantee",
+                "description": "We provide warranty on all work performed"
+            },
+            "experience": {
+                "title": "Experience",
+                "description": "Many years of experience in the construction industry"
+            }
         }
     },
     "services": {
@@ -81,7 +110,6 @@
         "new_construction": "New Construction",
         "comprehensive_renovation": "Comprehensive Renovation",
         "facade_works": "Facade Works",
-        "monolithic_works": "Monolithic Works",
         "sub": {
             "design": "Design of residential and non-residential premises",
             "excavation": "Excavation works",
@@ -124,15 +152,202 @@
         }
     },
     "portfolio": {
+        "title": "Portfolio",
+        "subtitle": "Each of our projects is unique and special.",
+        "view_all": "View all projects",
+        "read_more": "Read more",
         "floor_sanding": "Floor Sanding",
-        "monolithic_works": "Monolithic Works",
         "extension_construction": "Extension Construction",
         "roof_repair": "Roof Repair",
+        "load_more": "Load More Projects",
+        "project_details": "Project Details",
+        "category": "Category",
+        "year": "Year",
+        "location": "Location",
+        "technologies": "Technologies Used",
         "descriptions": {
             "floor_sanding": "Examples of projects for sanding floors made of natural stone and concrete",
             "monolithic_works": "Projects of monolithic construction and concrete works",
             "extension_construction": "Examples of extensions to existing buildings",
             "roof_repair": "Projects for the repair and renovation of roofing"
+        }
+    },
+    "project": {
+        "details_title": "Project Details",
+        "features_title": "Project Features",
+        "info_title": "Project Information",
+        "category": "Category",
+        "year": "Year",
+        "location": "Location",
+        "duration": "Duration",
+        "technologies_title": "Technologies Used",
+        "cta_title": "Interested in a Similar Project?",
+        "cta_subtitle": "Contact us to discuss your project",
+        "related_title": "Related Projects",
+        "not_found_title": "Project Not Found",
+        "not_found_message": "Unfortunately, the requested project does not exist.",
+        "back_to_portfolio": "Back to Portfolio",
+        "descriptions": {
+            "floor_sanding_full": "Professional sanding of natural stone and concrete floors using modern equipment. We restore the original beauty of surfaces using diamond cutters and polishing pads to achieve perfect results.",
+            "monolithic_works_full": "Monolithic construction using modern concreting technologies. Our specialists perform work on the construction of load-bearing structures, floors and walls using quality materials and precise adherence to technological processes.",
+            "extension_construction_full": "Construction of extensions to existing buildings taking into account the architectural features of the main building. We ensure harmonious combination of old and new, using modern materials and technologies to create functional and beautiful spaces.",
+            "roof_repair_full": "Comprehensive roof repair with restoration of waterproofing properties and improvement of thermal insulation. Our work includes restoration of load-bearing structures, replacement of roofing materials and installation of modern drainage systems."
+        },
+        "features": {
+            "natural_stone_sanding": "Natural stone sanding (marble, granite, travertine)",
+            "concrete_floor_sanding": "Concrete floor sanding",
+            "polishing_finishing": "Polishing and finishing",
+            "protective_coating": "Protective coating",
+            "reinforced_concrete": "Reinforced concrete structures",
+            "formwork_installation": "Formwork installation",
+            "concrete_pouring": "Concrete pouring",
+            "quality_control": "Quality control",
+            "foundation_work": "Foundation work",
+            "structural_engineering": "Structural engineering",
+            "modern_design": "Modern design",
+            "energy_efficiency": "Energy efficiency",
+            "waterproofing": "Waterproofing",
+            "structural_repair": "Structural repair",
+            "historic_preservation": "Historic preservation",
+            "modern_materials": "Modern materials"
+        },
+        "tech": {
+            "diamond_grinding": "Diamond grinding",
+            "polishing_pads": "Polishing pads",
+            "protective_sealers": "Protective sealers",
+            "modern_formwork": "Modern formwork",
+            "concrete_pumping": "Concrete pumps",
+            "reinforcement_steel": "Reinforcement steel",
+            "reinforced_concrete": "Reinforced concrete",
+            "thermal_insulation": "Thermal insulation",
+            "modern_materials": "Modern materials",
+            "waterproof_membranes": "Waterproof membranes",
+            "modern_roofing": "Modern roofing materials",
+            "insulation_materials": "Insulation materials"
+        }
+    },
+    "service": {
+        "details_title": "Service Details",
+        "features_title": "What the Service Includes",
+        "benefits_title": "Benefits",
+        "info_title": "Service Information",
+        "category": "Category",
+        "duration": "Duration",
+        "warranty": "Warranty",
+        "technologies_title": "Technologies Used",
+        "cta_title": "Interested in This Service?",
+        "cta_subtitle": "Contact us to discuss your project",
+        "related_title": "Other Services",
+        "not_found_title": "Service Not Found",
+        "not_found_message": "Unfortunately, the requested service does not exist.",
+        "back_to_services": "Back to Services",
+        "descriptions": {
+            "floor_sanding_full": "Professional sanding of natural stone and concrete floors using modern equipment. We restore the original beauty of surfaces using diamond cutters and polishing pads to achieve perfect results.",
+            "concrete_injection_full": "The injection method allows for local filling of cracks in concrete surfaces, eliminating leaks and restoring the waterproofing properties of the structure. Our company's specialists strengthen load-bearing structures without complex and expensive construction and repair work.",
+            "new_construction_full": "Providing construction services in Cyprus in compliance with all rules and regulations. With us, you will receive a full range of construction services: from design to full implementation and commissioning.",
+            "comprehensive_renovation_full": "Comprehensive services for private and business projects: with us, your property will acquire a new look and a modernized technological solution.",
+            "facade_works_full": "The facade plays an important role in the life of a building: it is its protection, thermal insulation, and decorative element. And in combination with decor, it will not only please the eye but also be beneficial to health."
+        },
+        "benefits": {
+            "floor_restoration": "Restoration of original floor appearance",
+            "modern_equipment": "Modern professional equipment",
+            "quality_guarantee": "Quality guarantee for work performed",
+            "quick_completion": "Quick completion of work",
+            "structural_strengthening": "Strengthening of load-bearing structures",
+            "waterproofing": "Waterproofing and moisture protection",
+            "minimal_disruption": "Minimal disruption to operation",
+            "long_term_durability": "Long-term reliability",
+            "full_service": "Full range of construction services",
+            "quality_materials": "Quality materials",
+            "project_management": "Project management",
+            "regulatory_compliance": "Compliance with all standards and requirements",
+            "complete_renovation": "Complete renovation",
+            "modern_technology": "Modern technology",
+            "energy_efficiency": "Improved energy efficiency",
+            "aesthetic_improvement": "Aesthetic improvement",
+            "weather_protection": "Weather protection",
+            "thermal_insulation": "Thermal insulation",
+            "aesthetic_enhancement": "Aesthetic enhancement",
+            "long_term_protection": "Long-term protection"
+        },
+        "tech": {
+            "diamond_grinding": "Diamond grinding",
+            "polishing_pads": "Polishing pads",
+            "protective_sealers": "Protective sealers",
+            "injection_materials": "Injection materials",
+            "pressure_injection": "Pressure injection",
+            "specialized_equipment": "Specialized equipment",
+            "modern_construction": "Modern construction technologies",
+            "quality_control": "Quality control",
+            "project_management": "Project management",
+            "modern_materials": "Modern materials",
+            "energy_solutions": "Energy-efficient solutions",
+            "quality_finishing": "Quality finishing",
+            "weather_resistant_materials": "Weather-resistant materials",
+            "thermal_insulation": "Thermal insulation materials",
+            "decorative_finishes": "Decorative finishes"
+        }
+    },
+    "service": {
+        "details_title": "Service Details",
+        "features_title": "Service Features",
+        "benefits_title": "Benefits",
+        "info_title": "Service Information",
+        "category": "Category",
+        "duration": "Duration",
+        "warranty": "Warranty",
+        "technologies_title": "Technologies Used",
+        "cta_title": "Ready to Start Your Project?",
+        "cta_subtitle": "Contact us for consultation and cost estimation",
+        "related_title": "Other Services",
+        "not_found_title": "Service Not Found",
+        "not_found_message": "Sorry, the requested service was not found",
+        "back_to_services": "Back to Services",
+        "descriptions": {
+            "floor_sanding_full": "Professional floor sanding for natural stone and concrete floors. We use modern equipment and quality materials to achieve perfect results. Our specialists work with various floor types: marble, granite, travertine, concrete surfaces.",
+            "concrete_injection_full": "Injection method for concrete structure restoration. We specialize in crack elimination, waterproofing restoration, and structural strengthening. Our technologies allow work without demolition and with minimal operational disruptions.",
+            "new_construction_full": "Complete construction cycle from design to project delivery. We provide comprehensive services for residential and commercial construction in Cyprus, following all norms and standards.",
+            "comprehensive_renovation_full": "Comprehensive reconstruction and modernization of existing buildings. We perform full range of building renovation works: from demolition to finishing with modern materials and technologies.",
+            "facade_works_full": "Professional facade works include restoration, insulation, decorative finishing, and building protection from atmospheric effects. We use quality materials and modern technologies for durable results."
+        },
+        "benefits": {
+            "floor_restoration": "Restoration of original floor appearance",
+            "modern_equipment": "Modern professional equipment",
+            "quality_guarantee": "Quality guarantee for completed works",
+            "quick_completion": "Quick work completion",
+            "structural_strengthening": "Structural strengthening",
+            "waterproofing": "Waterproofing restoration",
+            "minimal_disruption": "Minimal operational disruption",
+            "long_term_durability": "Long-term durability",
+            "full_service": "Full service package",
+            "quality_materials": "Quality materials",
+            "project_management": "Project management",
+            "regulatory_compliance": "Regulatory compliance",
+            "complete_renovation": "Complete renovation",
+            "modern_technology": "Modern technology",
+            "energy_efficiency": "Energy efficiency improvement",
+            "aesthetic_improvement": "Aesthetic improvement",
+            "weather_protection": "Weather protection",
+            "thermal_insulation": "Thermal insulation",
+            "aesthetic_enhancement": "Aesthetic enhancement",
+            "long_term_protection": "Long-term protection"
+        },
+        "tech": {
+            "diamond_grinding": "Diamond grinding",
+            "polishing_pads": "Polishing pads",
+            "protective_sealers": "Protective sealers",
+            "injection_materials": "Injection materials",
+            "pressure_injection": "Pressure injection",
+            "specialized_equipment": "Specialized equipment",
+            "modern_construction": "Modern construction technologies",
+            "quality_control": "Quality control",
+            "project_management": "Project management",
+            "modern_materials": "Modern materials",
+            "energy_solutions": "Energy-efficient solutions",
+            "quality_finishing": "Quality finishing",
+            "weather_resistant_materials": "Weather-resistant materials",
+            "thermal_insulation": "Thermal insulation materials",
+            "decorative_finishes": "Decorative finishes"
         }
     }
 }
