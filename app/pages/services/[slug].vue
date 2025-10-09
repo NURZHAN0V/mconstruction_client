@@ -29,9 +29,7 @@
                 <h3 class="text-xl font-semibold text-dark mb-4">{{ $t('service.features_title') }}</h3>
                 <ul class="space-y-3">
                   <li v-for="subService in service.subServices" :key="subService" class="flex items-start">
-                    <svg class="w-5 h-5 text-primary mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                    </svg>
+                    <Icon name="ri:checkbox-circle-fill" class="w-5 h-5 text-primary mr-3 flex-shrink-0 mt-0.5" />
                     <span class="text-gray-600">{{ $t(subService) }}</span>
                   </li>
                 </ul>
@@ -42,9 +40,7 @@
                 <h3 class="text-xl font-semibold text-dark mb-4">{{ $t('service.benefits_title') }}</h3>
                 <div class="grid md:grid-cols-2 gap-4">
                   <div v-for="benefit in service.benefits" :key="benefit" class="flex items-start">
-                    <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                    </svg>
+                    <Icon name="ri:check-double-line" class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" />
                     <span class="text-gray-600">{{ $t(benefit) }}</span>
                   </div>
                 </div>
@@ -55,7 +51,7 @@
 
         <!-- Sidebar -->
         <div class="lg:col-span-1">
-          <div class="bg-white rounded-lg shadow-lg p-6 sticky top-8">
+          <div class="bg-white rounded-lg shadow-lg p-6 sticky top-24">
             <h3 class="text-xl font-bold text-dark mb-6">{{ $t('service.info_title') }}</h3>
             
             <div class="space-y-4">
@@ -106,24 +102,25 @@
           <div
             v-for="relatedService in relatedServices"
             :key="relatedService.slug"
-            class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group"
           >
             <div class="relative h-48 overflow-hidden">
               <NuxtImg 
                 :src="relatedService.image" 
                 :alt="$t(relatedService.title)"
-                class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                 loading="lazy"
               />
             </div>
             <div class="p-6">
               <h3 class="text-xl font-bold text-dark mb-2">{{ $t(relatedService.title) }}</h3>
-              <p class="text-gray-600 mb-4">{{ $t(relatedService.description) }}</p>
+              <p class="text-gray-600 mb-4 line-clamp-3">{{ $t(relatedService.description) }}</p>
               <NuxtLink 
                 :to="localePath(`/services/${relatedService.slug}`)" 
-                class="text-primary font-bold hover:text-blue-600 transition-colors"
+                class="inline-flex items-center text-primary font-bold hover:text-blue-600 transition-colors"
               >
-                {{ $t('portfolio.read_more') }} →
+                {{ $t('portfolio.read_more') }}
+                <Icon name="ri:arrow-right-line" class="ml-1" />
               </NuxtLink>
             </div>
           </div>
@@ -149,7 +146,7 @@
 const route = useRoute()
 const localePath = useLocalePath()
 const { t } = useI18n()
-const slug = route.params.slug
+const slug = route.params.slug as string
 
 // Services data with detailed information
 const servicesData = {
@@ -161,21 +158,9 @@ const servicesData = {
     duration: '1-3 недели',
     warranty: '2 года',
     images: [
-      {
-        src: '/images/services/floor-sanding.webp',
-        alt: 'Шлифовка пола - натуральный камень',
-        thumbnail: '/images/services/floor-sanding.webp'
-      },
-      {
-        src: 'https://placehold.net/800x600',
-        alt: 'Шлифовка бетонного пола',
-        thumbnail: 'https://placehold.net/300x300'
-      },
-      {
-        src: 'https://placehold.net/800x600',
-        alt: 'Полировка мраморного пола',
-        thumbnail: 'https://placehold.net/300x300'
-      }
+      { src: '/images/services/floor-sanding.webp', alt: 'Шлифовка пола - натуральный камень' },
+      { src: '/images/services/floor-sanding.webp', alt: 'Шлифовка бетонного пола' },
+      { src: '/images/services/floor-sanding.webp', alt: 'Полировка мраморного пола' }
     ],
     subServices: [
       'services.sub.natural_stone',
@@ -201,21 +186,9 @@ const servicesData = {
     duration: '1-2 недели',
     warranty: '5 лет',
     images: [
-      {
-        src: '/images/services/concrete-injection.webp',
-        alt: 'Инъекция бетона - трещины',
-        thumbnail: '/images/services/concrete-injection.webp'
-      },
-      {
-        src: 'https://placehold.net/800x600',
-        alt: 'Инъекционная гидроизоляция',
-        thumbnail: 'https://placehold.net/300x300'
-      },
-      {
-        src: 'https://placehold.net/800x600',
-        alt: 'Восстановление конструкций',
-        thumbnail: 'https://placehold.net/300x300'
-      }
+      { src: '/images/services/concrete-injection.webp', alt: 'Инъекция бетона - трещины' },
+      { src: '/images/services/concrete-injection.webp', alt: 'Инъекционная гидроизоляция' },
+      { src: '/images/services/concrete-injection.webp', alt: 'Восстановление конструкций' }
     ],
     subServices: [
       'services.sub.injection_waterproofing',
@@ -246,21 +219,9 @@ const servicesData = {
     duration: '3-12 месяцев',
     warranty: '10 лет',
     images: [
-      {
-        src: '/images/services/new_construction.webp',
-        alt: 'Строительство новых объектов',
-        thumbnail: '/images/services/new_construction.webp'
-      },
-      {
-        src: 'https://placehold.net/800x600',
-        alt: 'Фундаментные работы',
-        thumbnail: 'https://placehold.net/300x300'
-      },
-      {
-        src: 'https://placehold.net/800x600',
-        alt: 'Возведение стен',
-        thumbnail: 'https://placehold.net/300x300'
-      }
+      { src: '/images/services/new_construction.webp', alt: 'Строительство новых объектов' },
+      { src: '/images/services/new_construction.webp', alt: 'Фундаментные работы' },
+      { src: '/images/services/new_construction.webp', alt: 'Возведение стен' }
     ],
     subServices: [
       'services.sub.design',
@@ -294,21 +255,9 @@ const servicesData = {
     duration: '2-8 недель',
     warranty: '3 года',
     images: [
-      {
-        src: '/images/services/comprehensive-renovation.webp',
-        alt: 'Комплексный ремонт',
-        thumbnail: '/images/services/comprehensive-renovation.webp'
-      },
-      {
-        src: 'https://placehold.net/800x600',
-        alt: 'Обновление интерьера',
-        thumbnail: 'https://placehold.net/300x300'
-      },
-      {
-        src: 'https://placehold.net/800x600',
-        alt: 'Современные решения',
-        thumbnail: 'https://placehold.net/300x300'
-      }
+      { src: '/images/services/comprehensive-renovation.webp', alt: 'Комплексный ремонт' },
+      { src: '/images/services/comprehensive-renovation.webp', alt: 'Обновление интерьера' },
+      { src: '/images/services/comprehensive-renovation.webp', alt: 'Современные решения' }
     ],
     subServices: [
       'services.sub.concrete_reinforcement',
@@ -339,21 +288,9 @@ const servicesData = {
     duration: '2-6 недель',
     warranty: '5 лет',
     images: [
-      {
-        src: '/images/services/facade-works.webp',
-        alt: 'Фасадные работы',
-        thumbnail: '/images/services/facade-works.webp'
-      },
-      {
-        src: 'https://placehold.net/800x600',
-        alt: 'Реставрация фасада',
-        thumbnail: 'https://placehold.net/300x300'
-      },
-      {
-        src: 'https://placehold.net/800x600',
-        alt: 'Декоративная отделка',
-        thumbnail: 'https://placehold.net/300x300'
-      }
+      { src: '/images/services/facade-works.webp', alt: 'Фасадные работы' },
+      { src: '/images/services/facade-works.webp', alt: 'Реставрация фасада' },
+      { src: '/images/services/facade-works.webp', alt: 'Декоративная отделка' }
     ],
     subServices: [
       'services.sub.facade_restoration',
@@ -380,24 +317,24 @@ const servicesData = {
 // Helper function to get service title for meta
 function getServiceTitle(slug: string): string {
   const service = servicesData[slug as keyof typeof servicesData]
-  return service ? t(service.title) : 'Услуга'
+  return service ? t(service.title) : t('nav.services')
 }
-
-// Meta
-useHead({
-  title: () => `Услуги - ${getServiceTitle(slug as string)} - K.M Construction`,
-  meta: [
-    { name: 'description', content: () => `Профессиональные услуги ${getServiceTitle(slug as string)} на Кипре от K.M Construction` }
-  ]
-})
 
 const service = computed(() => servicesData[slug as keyof typeof servicesData])
 
+// Meta
+useHead({
+  title: () => `${getServiceTitle(slug)} - K.M Construction`,
+  meta: [
+    { name: 'description', content: () => service.value ? t(service.value.description) : '' }
+  ]
+})
+
 // Breadcrumbs
 const breadcrumbs = computed(() => [
-  { title: t('nav.home'), to: '/' },
-  { title: t('nav.services'), to: '/services' },
-  { title: service.value ? t(service.value.title) : 'Услуга' }
+  { title: t('breadcrumbs.home'), to: localePath('/') },
+  { title: t('nav.services'), to: localePath('/services') },
+  { title: service.value ? t(service.value.title) : t('nav.services') }
 ])
 
 // Related services (other services)

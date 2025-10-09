@@ -13,7 +13,9 @@
         "home": "Home",
         "services": "Services",
         "portfolio": "Portfolio",
-        "contacts": "Contacts"
+        "contacts": "Contacts",
+        "privacy_policy": "Privacy Policy",
+        "toggle": "Toggle navigation"
     },
     "footer": {
         "privacy_policy": "Privacy Policy"
@@ -24,6 +26,7 @@
         "phone_title": "Phone",
         "email_title": "Email",
         "address_title": "Address",
+        "address_value": "Menelaou Kakoianni 16, Yeroskipou, Paphos 8201",
         "form": {
             "name": "Name",
             "email": "Email",
@@ -59,7 +62,17 @@
             "title": "K.M Construction in Cyprus",
             "subtitle": "Our company K.M.Construction carries out a full range of construction and installation works for residential and commercial premises.",
             "cta_phone": "Call me",
-            "cta_services": "Services"
+            "cta_services": "Services",
+            "slides": [
+                {
+                    "title": "K.M Construction in Cyprus",
+                    "subtitle": "Our company K.M.Construction carries out a full range of construction and installation works for residential and commercial premises."
+                },
+                {
+                    "title": "Quality & Reliability",
+                    "subtitle": "Your Trusted Construction Partner"
+                }
+            ]
         },
         "services": {
             "title": "Services",
@@ -157,6 +170,7 @@
         "view_all": "View all projects",
         "read_more": "Read more",
         "floor_sanding": "Floor Sanding",
+        "monolithic_works": "Monolithic Works",
         "extension_construction": "Extension Construction",
         "roof_repair": "Roof Repair",
         "load_more": "Load More Projects",

@@ -1,13 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
+  // ssr: false,
   devtools: { enabled: false },
   devServer: {
     port: 3000,
     host: '0.0.0.0',
   },
   css: ['~/assets/css/main.css'],
-  modules: ['@nuxt/scripts', '@nuxt/image', '@nuxt/fonts', '@nuxtjs/tailwindcss', '@pinia/nuxt', '@nuxtjs/i18n', '@nuxtjs/seo', '@nuxt/icon'],
+  modules: ['@nuxt/scripts', '@nuxt/image', '@nuxt/fonts', '@pinia/nuxt', '@nuxtjs/i18n', '@nuxtjs/seo', '@nuxt/icon', '@nuxtjs/tailwindcss'],
   future: {
     compatibilityVersion: 4
   },
@@ -30,10 +31,6 @@ export default defineNuxtConfig({
       { name: 'Open Sans', global: true },
     ]
   },
-  tailwindcss: {
-    exposeConfig: true,
-    viewer: true,
-  },
   i18n: {
     defaultLocale: 'en',
     locales: [
@@ -48,12 +45,13 @@ export default defineNuxtConfig({
   site: { indexable: false },
   app: {
     head: {
+      title: 'K.M Construction in Cyprus',
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { charset: 'utf-8' },
         {
           'http-equiv': 'Content-Security-Policy',
-          content: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https:; frame-src 'self' https://www.google.com;"
+          content: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https: ws:; frame-src 'self' https://www.google.com;"
         }
       ],
       link: [],
