@@ -85,7 +85,7 @@
 
     <!-- Mobile Menu -->
     <transition name="slide-fade">
-      <div v-if="isMenuOpen('mobile')" class="md:hidden bg-white border-t border-gray-200 absolute w-full shadow-lg">
+      <div v-if="isMenuOpen('mobile')" class="md:hidden bg-white border-t border-gray-200 fixed left-0 right-0 w-full shadow-lg max-h-[calc(100vh-80px)] overflow-y-auto z-40" style="top: 80px;">
           <nav class="flex flex-col p-4 space-y-4">
             <!-- Main navigation links -->
             <div>
@@ -173,8 +173,37 @@ const handleClickOutside = (event: MouseEvent) => {
   }
 };
 
-onMounted(() => document.addEventListener('click', handleClickOutside));
-onUnmounted(() => document.removeEventListener('click', handleClickOutside));
+// Блокировка скролла body при открытом мобильном меню
+watch(() => openMenus.value['mobile'], (isOpen) => {
+  if (process.client) {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+  }
+})
+
+// Закрытие мобильного меню при изменении размера окна
+const handleResize = () => {
+  if (window.innerWidth >= 768) {
+    closeMenu('mobile')
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside)
+  window.addEventListener('resize', handleResize)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('click', handleClickOutside)
+  window.removeEventListener('resize', handleResize)
+  // Восстанавливаем скролл при размонтировании
+  if (process.client) {
+    document.body.style.overflow = ''
+  }
+});
 
 const navigation = [
   { name: 'nav.home', path: '/' },
@@ -221,6 +250,7 @@ const availableLocales = computed(() => typedLocales.value.filter(l => l.code !=
 const changeLocale = (code: string) => {
   setLocale(code as 'en' | 'ru');
   closeMenu('lang');
+  closeMenu('mobile');
 };
 
 </script>
