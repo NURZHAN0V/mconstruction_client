@@ -358,5 +358,16 @@
             "thermal_insulation": "Теплоизоляционные материалы",
             "decorative_finishes": "Декоративные покрытия"
         }
+    },
+    "call_modal": {
+        "title": "Заказать звонок",
+        "description": "Оставьте свои контактные данные, и мы свяжемся с вами в ближайшее время.",
+        "name_label": "Имя",
+        "name_placeholder": "Иван Иванов",
+        "phone_label": "Телефон",
+        "phone_placeholder": "+7 (999) 999-99-99",
+        "submit_button": "Отправить",
+        "cancel_button": "Отмена",
+        "call_button_label": "Заказать звонок"
     }
 }

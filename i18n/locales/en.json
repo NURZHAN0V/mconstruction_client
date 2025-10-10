@@ -363,6 +363,17 @@
             "thermal_insulation": "Thermal insulation materials",
             "decorative_finishes": "Decorative finishes"
         }
+    },
+    "call_modal": {
+        "title": "Request a Call",
+        "description": "Leave your contact details, and we will contact you shortly.",
+        "name_label": "Name",
+        "name_placeholder": "John Doe",
+        "phone_label": "Phone",
+        "phone_placeholder": "+357 99 999999",
+        "submit_button": "Submit",
+        "cancel_button": "Cancel",
+        "call_button_label": "Request a call"
     }
 }
   

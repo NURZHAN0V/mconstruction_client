@@ -114,7 +114,7 @@ yarn preview
 
 ## 🚀 Развертывание в продакшене
 
-### Способ 1: Systemd сервис (рекомендуется)
+### Запуск через Systemd сервис
 
 Этот способ обеспечивает автоматический запуск приложения при старте сервера и автоматический перезапуск при сбоях.
 
@@ -126,18 +126,17 @@ nano /etc/systemd/system/nuxt.service
 #### Шаг 2: Добавьте конфигурацию
 ```ini
 [Unit]
-Description=Nuxt.js App - K.M.Construction
+Description=Nuxt.js App
 After=network.target
 
 [Service]
 Type=simple
 User=web
 WorkingDirectory=/var/www/client
+Environment=PORT=4030
 ExecStart=/usr/bin/node .output/server/index.mjs
 Restart=always
 RestartSec=10
-Environment=NODE_ENV=production
-Environment=PORT=4030
 
 [Install]
 WantedBy=multi-user.target
@@ -179,46 +178,6 @@ journalctl -u nuxt -f
 
 # Просмотр последних 100 строк логов
 journalctl -u nuxt -n 100
-```
-
-### Способ 2: PM2 процесс-менеджер
-
-Альтернативный способ с использованием PM2 для управления процессами Node.js.
-
-#### Установка PM2
-```bash
-npm install -g pm2
-```
-
-#### Запуск приложения
-```bash
-# Запуск с использованием конфигурационного файла
-pm2 start ecosystem.config.cjs
-
-# Или прямой запуск
-pm2 start .output/server/index.mjs --name k-m-construction
-```
-
-#### Управление через PM2
-```bash
-# Просмотр статуса
-pm2 status
-
-# Остановить приложение
-pm2 stop k-m-construction
-
-# Перезапустить приложение
-pm2 restart k-m-construction
-
-# Просмотр логов
-pm2 logs k-m-construction
-
-# Мониторинг
-pm2 monit
-
-# Добавить в автозагрузку
-pm2 startup
-pm2 save
 ```
 
 ## 🎨 Дизайн-система

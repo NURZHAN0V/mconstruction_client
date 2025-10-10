@@ -5,8 +5,12 @@
       <slot />
     </main>
     <LayoutFooter />
+    <CommonBackToTop />
+    <CommonCallButton @open-modal="isCallModalOpen = true" />
+    <CommonCallModal :is-open="isCallModalOpen" @close="isCallModalOpen = false" />
   </div>
 </template>
 
 <script setup lang="ts">
+const isCallModalOpen = ref(false)
 </script> 
