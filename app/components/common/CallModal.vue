@@ -97,6 +97,8 @@ const props = defineProps({
 
 const emit = defineEmits(['close'])
 
+const { sendMessage } = useTelegram()
+
 const form = ref({
   name: '',
   phone: '',
@@ -106,8 +108,14 @@ function closeModal() {
   emit('close')
 }
 
-function handleSubmit() {
-  console.log('Form submitted:', form.value)
+async function handleSubmit() {
+  const message = `
+<b>Новая заявка на звонок!</b>
+<b>Имя:</b> ${form.value.name}
+<b>Телефон:</b> ${form.value.phone}
+`
+  await sendMessage(message)
+
   form.value.name = ''
   form.value.phone = ''
   closeModal()

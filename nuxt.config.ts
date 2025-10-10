@@ -60,5 +60,11 @@ export default defineNuxtConfig({
   },
   nitro: {
     compressPublicAssets: true,
-  }
+  },
+  runtimeConfig: {
+    public: {
+      telegramBotToken: process.env.NUXT_PUBLIC_TELEGRAM_BOT_TOKEN || '',
+      telegramChatIds: process.env.NUXT_PUBLIC_TELEGRAM_CHAT_IDS || '',
+    },
+  },
 })
