@@ -43,6 +43,9 @@ export default defineNuxtConfig({
     },
   },
   site: { indexable: false },
+  robots: {
+    disallow: ['/404'],
+  },
   app: {
     head: {
       title: 'K.M Construction in Cyprus',
