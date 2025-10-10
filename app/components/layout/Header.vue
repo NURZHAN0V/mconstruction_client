@@ -1,5 +1,5 @@
 <template>
-  <header class="bg-white/75 backdrop-blur-lg shadow-md sticky top-0 z-50">
+  <header ref="headerRef" class="bg-white/75 backdrop-blur-lg shadow-md sticky top-0 z-50">
     <div class="container mx-auto px-4">
       <!-- Top bar -->
       <div class="hidden md:flex justify-between items-center py-2 text-sm text-gray-600 border-b border-gray-200">
@@ -35,7 +35,6 @@
           <template v-for="navItem in navigation" :key="navItem.name">
             <div v-if="navItem.children" 
                  class="relative" 
-                 ref="desktopMenus"
                  @mouseenter="openMenu(navItem.name)" 
                  @mouseleave="closeMenu(navItem.name)">
               <button class="flex items-center hover:text-blue-600 transition-colors pointer-events-none">
@@ -58,7 +57,6 @@
 
         <div class="flex items-center space-x-4">
             <div class="relative" 
-                 ref="desktopMenus"
                  @mouseenter="openMenu('lang')"
                  @mouseleave="closeMenu('lang')">
                 <button class="flex items-center border border-gray-300 px-3 py-1.5 rounded-md hover:border-blue-600 transition-colors pointer-events-none">
@@ -147,7 +145,7 @@ const { locale, locales, setLocale } = useI18n();
 const localePath = useLocalePath();
 
 const openMenus = ref<Record<string, boolean>>({});
-const desktopMenus = ref<HTMLElement[]>([]);
+const headerRef = ref<HTMLElement | null>(null);
 
 const isMenuOpen = (menu: string) => !!openMenus.value[menu];
 
@@ -168,7 +166,7 @@ const closeAllMenus = () => {
 };
 
 const handleClickOutside = (event: MouseEvent) => {
-  if (desktopMenus.value.every(ref => ref && !ref.contains(event.target as Node))) {
+  if (headerRef.value && !headerRef.value.contains(event.target as Node)) {
     closeAllMenus();
   }
 };
