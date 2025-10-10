@@ -42,7 +42,13 @@ export default defineNuxtConfig({
       optimizeTranslationDirective: true,
     },
   },
-  site: { indexable: false },
+  site: {
+    url: 'https://k-m-construction.com', 
+    name: 'K.M Construction',
+    description: 'K.M Construction in Cyprus',
+    defaultLocale: 'en',
+    indexable: true,
+  },
   robots: {
     disallow: ['/404'],
   },
