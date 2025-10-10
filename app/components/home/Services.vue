@@ -8,20 +8,20 @@
 
       <div v-if="services.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Prominent Card -->
-        <div class="sm:col-span-2 lg:col-span-2 lg:row-span-2 bg-white rounded-lg shadow-lg overflow-hidden transition-shadow duration-300 hover:shadow-2xl flex flex-col md:flex-row group">
-          <NuxtImg :src="services[0].image" :alt="$t(services[0].name)" class="w-full md:w-1/2 h-64 md:h-full object-cover" loading="lazy" />
+        <div v-if="firstService" class="sm:col-span-2 lg:col-span-2 lg:row-span-2 bg-white rounded-lg shadow-lg overflow-hidden transition-shadow duration-300 hover:shadow-2xl flex flex-col md:flex-row group">
+          <NuxtImg :src="firstService.image" :alt="$t(firstService.name)" class="w-full md:w-1/2 h-64 md:h-full object-cover" loading="lazy" />
           <div class="p-8 flex flex-col flex-grow">
-            <h3 class="text-2xl font-bold text-dark mb-3">{{ $t(services[0].name) }}</h3>
-            <p class="text-gray-600 mb-4 text-left">{{ $t(services[0].description) }}</p>
+            <h3 class="text-2xl font-bold text-dark mb-3">{{ $t(firstService.name) }}</h3>
+            <p class="text-gray-600 mb-4 text-left">{{ $t(firstService.description) }}</p>
             
-            <ul v-if="services[0].subServices" class="space-y-2 text-sm text-gray-600 mb-6 text-left grid grid-cols-1 sm:grid-cols-2 gap-x-4 flex-grow">
-              <li v-for="sub in services[0].subServices" :key="sub" class="flex items-start">
+            <ul v-if="firstService.subServices" class="space-y-2 text-sm text-gray-600 mb-6 text-left grid grid-cols-1 sm:grid-cols-2 gap-x-4 flex-grow">
+              <li v-for="sub in firstService.subServices" :key="sub" class="flex items-start">
                 <Icon name="ri:checkbox-circle-fill" class="w-4 h-4 text-primary mr-2 flex-shrink-0 mt-0.5" />
                 <span>{{ $t(sub) }}</span>
               </li>
             </ul>
 
-            <NuxtLink :to="localePath(services[0].link)" class="mt-auto self-center inline-flex items-center justify-center gap-2 font-bold py-2.5 px-5 rounded-lg bg-primary text-white shadow-md hover:bg-primary/90 hover:shadow-lg active:translate-y-px focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary transition-all duration-300 group">
+            <NuxtLink :to="localePath(firstService.link)" class="mt-auto self-center inline-flex items-center justify-center gap-2 font-bold py-2.5 px-5 rounded-lg bg-primary text-white shadow-md hover:bg-primary/90 hover:shadow-lg active:translate-y-px focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary transition-all duration-300 group">
               {{ $t('home.services.read_more') }}
               <Icon name="ri:arrow-right-line" class="ml-1 transition-transform duration-300 group-hover:translate-x-0.5" />
             </NuxtLink>
@@ -103,4 +103,6 @@ const services = [
     image: '/images/services/concrete-injection.webp'
   }
 ]
+
+const firstService = computed(() => services[0])
 </script> 

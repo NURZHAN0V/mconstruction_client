@@ -15,11 +15,11 @@
         <div class="relative overflow-hidden rounded-2xl shadow-2xl bg-black/5">
           <!-- Slide -->
           <transition name="carousel-fade" mode="out-in">
-            <div :key="currentIndex" class="relative h-[420px] sm:h-[480px] md:h-[540px]">
-              <NuxtLink :to="localePath(projects[currentIndex].link)" class="absolute inset-0" aria-label="Open project"></NuxtLink>
+            <div v-if="currentProject" :key="currentIndex" class="relative h-[420px] sm:h-[480px] md:h-[540px]">
+              <NuxtLink :to="localePath(currentProject.link)" class="absolute inset-0" aria-label="Open project"></NuxtLink>
               <NuxtImg 
-                :src="projects[currentIndex].image" 
-                :alt="$t(projects[currentIndex].title)" 
+                :src="currentProject.image" 
+                :alt="$t(currentProject.title)" 
                 class="absolute inset-0 w-full h-full object-cover" 
                 loading="lazy"
                 sizes="sm:100vw md:80vw lg:1200px"
@@ -30,13 +30,13 @@
               <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
                 <div class="max-w-2xl">
                   <h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-3">
-                    {{ $t(projects[currentIndex].title) }}
+                    {{ $t(currentProject.title) }}
                   </h3>
                   <p class="text-base sm:text-lg text-white/90 mb-5 line-clamp-3">
-                    {{ $t(projects[currentIndex].description) }}
+                    {{ $t(currentProject.description) }}
                   </p>
                   <NuxtLink 
-                    :to="localePath(projects[currentIndex].link)"
+                    :to="localePath(currentProject.link)"
                     class="inline-flex items-center justify-center gap-2 font-bold py-3 px-6 rounded-lg bg-primary text-white shadow-lg hover:bg-primary/90 hover:shadow-xl active:translate-y-px focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary transition-all duration-300 group"
                   >
                     {{ $t('portfolio.read_more') }}
@@ -134,6 +134,8 @@ let timer: ReturnType<typeof setInterval> | null = null
 const progress = ref(0)
 let progressTimer: ReturnType<typeof setInterval> | null = null
 
+const currentProject = computed(() => projects[currentIndex.value])
+
 const next = () => {
   currentIndex.value = (currentIndex.value + 1) % projects.length
   resetProgress()
@@ -185,6 +187,10 @@ function stopProgress() {
     clearInterval(progressTimer)
     progressTimer = null
   }
+}
+
+function resetProgress() {
+  startAutoplay()
 }
 
 onMounted(() => {

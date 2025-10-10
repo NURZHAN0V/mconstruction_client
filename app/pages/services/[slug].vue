@@ -348,7 +348,7 @@ const relatedServices = computed(() => {
       slug: key,
       title: data.title,
       description: data.description,
-      image: data.images[0].src
+      image: data.images[0]?.src || '/images/placeholder.webp'
     }))
 })
 </script> 

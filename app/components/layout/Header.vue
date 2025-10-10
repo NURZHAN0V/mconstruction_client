@@ -62,8 +62,8 @@
                  @mouseenter="openMenu('lang')"
                  @mouseleave="closeMenu('lang')">
                 <button class="flex items-center border border-gray-300 px-3 py-1.5 rounded-md hover:border-blue-600 transition-colors pointer-events-none">
-                    <Icon :name="currentLocale?.icon" class="w-5 h-5" />
-                    <span class="mx-2 text-sm font-medium">{{ currentLocale?.name }}</span>
+                    <Icon :name="currentLocale?.icon || 'ri:global-line'" class="w-5 h-5" />
+                    <span class="mx-2 text-sm font-medium">{{ currentLocale?.name || 'EN' }}</span>
                     <Icon name="ri:arrow-down-s-line" class="w-5 h-5 transition-transform" :class="{ 'rotate-180': isMenuOpen('lang') }" />
                 </button>
                 <transition name="fade">
@@ -209,16 +209,17 @@ interface LocaleObject {
   icon: string;
 }
 
-const typedLocales = computed(() => (locales.value as LocaleObject[]).map(l => ({
-  ...l,
+const typedLocales = computed(() => (locales.value as any[]).map(l => ({
+  code: l.code,
+  name: l.name,
   icon: l.code === 'ru' ? 'emojione-v1:flag-for-russia' : 'emojione-v1:flag-for-united-kingdom'
-})));
+})) as LocaleObject[]);
 
 const currentLocale = computed(() => typedLocales.value.find(l => l.code === locale.value));
 const availableLocales = computed(() => typedLocales.value.filter(l => l.code !== locale.value));
 
 const changeLocale = (code: string) => {
-  setLocale(code);
+  setLocale(code as 'en' | 'ru');
   closeMenu('lang');
 };
 
