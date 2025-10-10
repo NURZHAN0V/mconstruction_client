@@ -85,7 +85,7 @@
 
     <!-- Mobile Menu -->
     <transition name="slide-fade">
-      <div v-if="isMenuOpen('mobile')" class="md:hidden bg-white border-t border-gray-200 fixed left-0 right-0 w-full shadow-lg max-h-[calc(100vh-80px)] overflow-y-auto z-40" style="top: 80px;">
+      <div v-if="isMenuOpen('mobile')" class="md:hidden bg-white border-t border-gray-200 fixed left-0 right-0 w-full shadow-lg max-h-[calc(100vh-60px)] overflow-y-auto z-40">
           <nav class="flex flex-col p-4 space-y-4">
             <!-- Main navigation links -->
             <div>
