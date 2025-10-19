@@ -19,16 +19,16 @@
           <div 
             v-for="project in portfolioProjects" 
             :key="project.id"
-            class="group relative block bg-black rounded-lg overflow-hidden shadow-lg"
+            class="group relative block bg-black rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:ring-2 hover:ring-primary/30"
           >
             <NuxtImg 
               :src="project.image" 
               :alt="$t(project.title)" 
-              class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110 opacity-70 group-hover:opacity-50"
+              class="absolute inset-0 w-full h-full object-cover transition-all duration-300 opacity-70 group-hover:opacity-50"
               loading="lazy"
             />
-            <NuxtLink :to="localePath(project.link)" class="relative p-6 h-full flex flex-col justify-end">
-              <div class="transform transition-transform duration-500 ease-in-out group-hover:-translate-y-2">
+            <NuxtLink :to="localePath(project.link)" class="relative p-6 h-full flex flex-col justify-end min-h-[400px]">
+              <div class="transform transition-all duration-300">
                 <h3 class="text-2xl font-bold text-white mb-2">{{ $t(project.title) }}</h3>
                 <p class="text-gray-200 mb-4 line-clamp-2">{{ $t(project.description) }}</p>
                 <span class="inline-flex items-center font-semibold text-white group-hover:text-primary transition-colors duration-300">
@@ -163,7 +163,7 @@ const portfolioProjects = [
     id: 4,
     title: 'portfolio.floor_sanding',
     description: 'portfolio.descriptions.floor_sanding',
-    image: '/images/portfolio/floor-sanding/6048585302198568950-819x1024.webp',
+    image: '/images/portfolio/floor-sanding/photo_6028334436908648615_y.webp',
     link: '/portfolio/floor-sanding'
   }
 ]

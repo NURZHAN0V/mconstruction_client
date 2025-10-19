@@ -75,17 +75,18 @@
                 }
             ]
         },
-        "services": {
-            "title": "Services",
-            "subtitle": "We provide a full range of professional services in the field of construction, reconstruction and design.",
-            "read_more": "Read more",
-            "descriptions": {
-                "new_construction": "Providing construction services in Cyprus in compliance with all rules and regulations. With us, you will receive a full range of construction services: from design to full implementation and commissioning.",
-                "comprehensive_renovation": "Comprehensive services for private and business projects: with us, your property will acquire a new look and a modernized technological solution.",
-                "facade_works": "The facade plays an important role in the life of a building: it is its protection, thermal insulation, and decorative element... And in combination with decor, it will not only please the eye but also be beneficial to health.",
-                "floor_sanding": "Modern solutions in the field of concrete and stone floors. We will offer the best solutions to make your floor better.",
-                "concrete_injection": "The injection method allows for the local filling of cracks in a concrete surface, eliminating leaks and restoring the waterproofing properties of the structure. Our company's specialists strengthen load-bearing structures without complex and expensive construction and repair work."
-            }
+    "services": {
+        "title": "Services",
+        "subtitle": "We provide a full range of professional services in the field of construction, reconstruction and design.",
+        "read_more": "Read more",
+        "view_all": "All Services",
+        "descriptions": {
+            "new_construction": "Providing construction services in Cyprus in compliance with all rules and regulations. With us, you will receive a full range of construction services: from design to full implementation and commissioning.",
+            "comprehensive_renovation": "Comprehensive services for private and business projects: with us, your property will acquire a new look and a modernized technological solution.",
+            "facade_works": "The facade plays an important role in the life of a building: it is its protection, thermal insulation, and decorative element... And in combination with decor, it will not only please the eye but also be beneficial to health.",
+            "floor_sanding": "Modern solutions in the field of concrete and stone floors. We will offer the best solutions to make your floor better.",
+            "concrete_injection": "The injection method allows for the local filling of cracks in a concrete surface, eliminating leaks and restoring the waterproofing properties of the structure. Our company's specialists strengthen load-bearing structures without complex and expensive construction and repair work."
+        }
         },
         "portfolio": {
             "title": "Portfolio",

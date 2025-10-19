@@ -102,7 +102,7 @@ const projects = [
     id: 1,
     title: 'portfolio.floor_sanding',
     description: 'portfolio.descriptions.floor_sanding',
-    image: '/images/portfolio/floor-sanding/6048585302198568950-819x1024.webp',
+    image: '/images/portfolio/floor-sanding/photo_6028334436908648615_y.webp',
     link: '/portfolio/floor-sanding'
   },
   {

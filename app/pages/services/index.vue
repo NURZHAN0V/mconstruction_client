@@ -22,17 +22,17 @@
           <div 
             v-for="service in services" 
             :key="service.slug"
-            class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group"
+            class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:ring-2 hover:ring-primary/30 group"
           >
-            <div class="relative h-64 md:h-80">
+            <div class="relative h-64 md:h-80 overflow-hidden">
               <NuxtImg 
                 :src="service.image" 
                 :alt="$t(service.title)"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                class="w-full h-full object-cover transition-all duration-300"
                 loading="lazy"
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-              <div class="absolute bottom-0 left-0 right-0 p-6">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent transition-all duration-300 group-hover:from-black/75"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-6 transition-transform duration-300 group-hover:translate-y-0">
                 <h3 class="text-2xl font-bold text-white mb-2">{{ $t(service.title) }}</h3>
                 <p class="text-blue-100 line-clamp-2">{{ $t(service.description) }}</p>
               </div>
@@ -114,35 +114,35 @@ const services = [
     slug: 'new-construction',
     title: 'services.new_construction',
     description: 'home.services.descriptions.new_construction',
-    image: '/images/services/new_construction.webp',
+    image: '/images/services/new_construction/photo_6028334436908648604_y.webp',
     tags: ['services.sub.design', 'services.sub.foundation', 'services.sub.finishing_works']
   },
   {
     slug: 'comprehensive-renovation',
     title: 'services.comprehensive_renovation',
     description: 'home.services.descriptions.comprehensive_renovation',
-    image: '/images/services/comprehensive-renovation.webp',
+    image: '/images/services/comprehensive-renovation/photo_6028334436908648610_y.webp',
     tags: ['services.sub.concrete_reinforcement', 'services.sub.wall_cladding', 'services.sub.utility_replacement']
   },
   {
     slug: 'facade-works',
     title: 'services.facade_works',
     description: 'home.services.descriptions.facade_works',
-    image: '/images/services/facade-works.webp',
+    image: '/images/services/facade-works/photo_6028424944754478134_y.webp',
     tags: ['services.sub.facade_restoration', 'services.sub.facade_insulation', 'services.sub.decorative_finishing']
   },
   {
     slug: 'floor-sanding',
     title: 'services.floor_sanding',
     description: 'home.services.descriptions.floor_sanding',
-    image: '/images/services/floor-sanding.webp',
+    image: '/images/services/floor-sanding/photo_6028334436908648615_y.webp',
     tags: ['services.sub.natural_stone', 'services.sub.concrete_floor']
   },
   {
     slug: 'concrete-injection',
     title: 'services.concrete_injection',
     description: 'home.services.descriptions.concrete_injection',
-    image: '/images/services/concrete-injection.webp',
+    image: '/images/services/concrete-injection/photo_6028334436908648619_y.webp',
     tags: ['services.sub.injection_waterproofing', 'services.sub.crack_injection', 'services.sub.masonry_injection']
   }
 ]

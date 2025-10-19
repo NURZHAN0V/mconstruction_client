@@ -120,9 +120,9 @@ const servicesData = {
     duration: '1-3 недели',
     warranty: '2 года',
     images: [
-      { src: '/images/services/floor-sanding.webp', alt: 'Шлифовка пола - натуральный камень' },
-      { src: '/images/services/floor-sanding.webp', alt: 'Шлифовка бетонного пола' },
-      { src: '/images/services/floor-sanding.webp', alt: 'Полировка мраморного пола' }
+      { src: '/images/services/floor-sanding/photo_6028334436908648615_y.webp', alt: 'Шлифовка пола - натуральный камень' },
+      { src: '/images/services/floor-sanding/photo_6028334436908648616_y.webp', alt: 'Шлифовка бетонного пола' },
+      { src: '/images/services/floor-sanding/photo_6028334436908648617_y.webp', alt: 'Полировка мраморного пола' }
     ],
     subServices: [
       'services.sub.natural_stone',
@@ -148,9 +148,8 @@ const servicesData = {
     duration: '1-2 недели',
     warranty: '5 лет',
     images: [
-      { src: '/images/services/concrete-injection.webp', alt: 'Инъектирование бетона - трещины' },
-      { src: '/images/services/concrete-injection.webp', alt: 'Инъекционная гидроизоляция' },
-      { src: '/images/services/concrete-injection.webp', alt: 'Восстановление конструкций' }
+      { src: '/images/services/concrete-injection/photo_6028334436908648619_y.webp', alt: 'Инъектирование бетона - трещины' },
+      { src: '/images/services/concrete-injection/photo_6028334436908648620_y.webp', alt: 'Инъекционная гидроизоляция' }
     ],
     subServices: [
       'services.sub.injection_waterproofing',
@@ -181,9 +180,9 @@ const servicesData = {
     duration: '3-12 месяцев',
     warranty: '10 лет',
     images: [
-      { src: '/images/services/new_construction.webp', alt: 'Строительство новых объектов' },
-      { src: '/images/services/new_construction.webp', alt: 'Фундаментные работы' },
-      { src: '/images/services/new_construction.webp', alt: 'Возведение стен' }
+      { src: '/images/services/new_construction/photo_6028334436908648604_y.webp', alt: 'Строительство новых объектов' },
+      { src: '/images/services/new_construction/photo_6028334436908648605_y.webp', alt: 'Фундаментные работы' },
+      { src: '/images/services/new_construction/photo_6028334436908648606_y.webp', alt: 'Возведение стен' }
     ],
     subServices: [
       'services.sub.design',
@@ -216,9 +215,8 @@ const servicesData = {
     duration: '2-8 недель',
     warranty: '3 года',
     images: [
-      { src: '/images/services/comprehensive-renovation.webp', alt: 'Комплексный ремонт' },
-      { src: '/images/services/comprehensive-renovation.webp', alt: 'Обновление интерьера' },
-      { src: '/images/services/comprehensive-renovation.webp', alt: 'Современные решения' }
+      { src: '/images/services/comprehensive-renovation/photo_6028334436908648610_y.webp', alt: 'Комплексный ремонт' },
+      { src: '/images/services/comprehensive-renovation/photo_6028334436908648611_y.webp', alt: 'Обновление интерьера' }
     ],
     subServices: [
       'services.sub.concrete_reinforcement',
@@ -249,9 +247,9 @@ const servicesData = {
     duration: '2-6 недель',
     warranty: '5 лет',
     images: [
-      { src: '/images/services/facade-works.webp', alt: 'Фасадные работы' },
-      { src: '/images/services/facade-works.webp', alt: 'Реставрация фасада' },
-      { src: '/images/services/facade-works.webp', alt: 'Декоративная отделка' }
+      { src: '/images/services/facade-works/photo_6028424944754478134_y.webp', alt: 'Фасадные работы' },
+      { src: '/images/services/facade-works/photo_6028424944754478133_y.webp', alt: 'Реставрация фасада' },
+      { src: '/images/services/facade-works/photo_6028424944754478132_x.webp', alt: 'Декоративная отделка' }
     ],
     subServices: [
       'services.sub.facade_restoration',

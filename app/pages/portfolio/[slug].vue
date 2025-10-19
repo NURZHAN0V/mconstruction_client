@@ -187,19 +187,14 @@ const portfolioData = {
     duration: '2-3 недели',
     images: [
       {
-        src: '/images/portfolio/floor-sanding/6048585302198568950-819x1024.webp',
+        src: '/images/portfolio/floor-sanding/photo_6028334436908648615_y.webp',
         alt: 'Шлифовка пола - натуральный камень',
-        thumbnail: '/images/portfolio/floor-sanding/6048585302198568950-819x1024.webp'
+        thumbnail: '/images/portfolio/floor-sanding/photo_6028334436908648615_y.webp'
       },
       {
         src: '/images/portfolio/floor-sanding/6048585302198568951-819x1024.webp',
         alt: 'Шлифовка бетонного пола',
         thumbnail: '/images/portfolio/floor-sanding/6048585302198568951-819x1024.webp'
-      },
-      {
-        src: '/images/portfolio/floor-sanding/6048585302198568952-819x1024.webp',
-        alt: 'Полировка мраморного пола',
-        thumbnail: '/images/portfolio/floor-sanding/6048585302198568952-819x1024.webp'
       }
     ],
     features: [
