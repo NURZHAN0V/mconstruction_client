@@ -190,7 +190,6 @@ const servicesData = {
       'services.sub.excavation',
       'services.sub.foundation',
       'services.sub.reinforced_concrete',
-      'services.sub.wall_construction',
       'services.sub.finishing_works',
       'services.sub.roofing_works',
       'services.sub.pools',
