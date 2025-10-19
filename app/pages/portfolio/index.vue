@@ -165,6 +165,13 @@ const portfolioProjects = [
     description: 'portfolio.descriptions.floor_sanding',
     image: '/images/portfolio/floor-sanding/photo_6028334436908648615_y.webp',
     link: '/portfolio/floor-sanding'
+  },
+  {
+    id: 5,
+    title: 'portfolio.troodos_house',
+    description: 'portfolio.descriptions.troodos_house',
+    image: '/images/portfolio/troodos-house-construction/photo_6008277321888422211_y.webp',
+    link: '/portfolio/troodos-house-construction'
   }
 ]
 

@@ -224,6 +224,7 @@ const navigation = [
       { name: 'portfolio.monolithic_works', slug: 'monolithic-works' },
       { name: 'portfolio.extension_construction', slug: 'extension-construction' },
       { name: 'portfolio.roof_repair', slug: 'roof-repair' },
+      { name: 'portfolio.troodos_house', slug: 'troodos-house-construction' },
     ]
   },
   { name: 'nav.contacts', path: '/contacts' },

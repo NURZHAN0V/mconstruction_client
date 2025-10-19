@@ -125,6 +125,13 @@ const projects = [
     description: 'portfolio.descriptions.roof_repair',
     image: '/images/portfolio/roof-repair/1.webp',
     link: '/portfolio/roof-repair'
+  },
+  {
+    id: 5,
+    title: 'portfolio.troodos_house',
+    description: 'portfolio.descriptions.troodos_house',
+    image: '/images/portfolio/troodos-house-construction/photo_6008277321888422211_y.webp',
+    link: '/portfolio/troodos-house-construction'
   }
 ]
 

@@ -174,6 +174,7 @@
         "monolithic_works": "Monolithic Works",
         "extension_construction": "Extension Construction",
         "roof_repair": "Roof Repair",
+        "troodos_house": "House Construction in Troodos",
         "load_more": "Load More Projects",
         "project_details": "Project Details",
         "category": "Category",
@@ -184,7 +185,8 @@
             "floor_sanding": "Examples of projects for sanding floors made of natural stone and concrete",
             "monolithic_works": "Projects of monolithic construction and concrete works",
             "extension_construction": "Examples of extensions to existing buildings",
-            "roof_repair": "Projects for the repair and renovation of roofing"
+            "roof_repair": "Projects for the repair and renovation of roofing",
+            "troodos_house": "Construction of a residential house in the Troodos mountains using modern technologies"
         }
     },
     "project": {
@@ -206,7 +208,8 @@
             "floor_sanding_full": "Professional sanding of natural stone and concrete floors using modern equipment. We restore the original beauty of surfaces using diamond cutters and polishing pads to achieve perfect results.",
             "monolithic_works_full": "Monolithic construction using modern concreting technologies. Our specialists perform work on the construction of load-bearing structures, floors and walls using quality materials and precise adherence to technological processes.",
             "extension_construction_full": "Construction of extensions to existing buildings taking into account the architectural features of the main building. We ensure harmonious combination of old and new, using modern materials and technologies to create functional and beautiful spaces.",
-            "roof_repair_full": "Comprehensive roof repair with restoration of waterproofing properties and improvement of thermal insulation. Our work includes restoration of load-bearing structures, replacement of roofing materials and installation of modern drainage systems."
+            "roof_repair_full": "Comprehensive roof repair with restoration of waterproofing properties and improvement of thermal insulation. Our work includes restoration of load-bearing structures, replacement of roofing materials and installation of modern drainage systems.",
+            "troodos_house_full": "Full cycle construction of a modern residential house in the picturesque area of the Troodos mountain range. The project includes foundation construction, monolithic structures, roofing works and complete interior finishing taking into account the mountain climate and landscape."
         },
         "features": {
             "natural_stone_sanding": "Natural stone sanding (marble, granite, travertine)",

@@ -384,6 +384,48 @@ const portfolioData = {
       'project.tech.modern_roofing',
       'project.tech.insulation_materials'
     ]
+  },
+  'troodos-house-construction': {
+    title: 'portfolio.troodos_house',
+    description: 'portfolio.descriptions.troodos_house',
+    fullDescription: 'project.descriptions.troodos_house_full',
+    categoryName: 'portfolio.troodos_house',
+    year: '2024',
+    location: 'Тродос, Кипр',
+    duration: '6-8 месяцев',
+    images: [
+      {
+        src: '/images/portfolio/troodos-house-construction/photo_6008277321888422211_y.webp',
+        alt: 'Сборка дома в Тродосе - фундамент и каркас',
+        thumbnail: '/images/portfolio/troodos-house-construction/photo_6008277321888422211_y.webp'
+      },
+      {
+        src: '/images/portfolio/troodos-house-construction/photo_6008277321888422212_y.webp',
+        alt: 'Строительство дома в горах',
+        thumbnail: '/images/portfolio/troodos-house-construction/photo_6008277321888422212_y.webp'
+      },
+      {
+        src: '/images/portfolio/troodos-house-construction/photo_6008277321888422213_y.webp',
+        alt: 'Возведение стен и перекрытий',
+        thumbnail: '/images/portfolio/troodos-house-construction/photo_6008277321888422213_y.webp'
+      },
+      {
+        src: '/images/portfolio/troodos-house-construction/photo_6008277321888422214_y.webp',
+        alt: 'Этапы строительства дома',
+        thumbnail: '/images/portfolio/troodos-house-construction/photo_6008277321888422214_y.webp'
+      }
+    ],
+    features: [
+      'project.features.foundation_work',
+      'project.features.reinforced_concrete',
+      'project.features.modern_design',
+      'project.features.energy_efficiency'
+    ],
+    technologies: [
+      'project.tech.reinforced_concrete',
+      'project.tech.thermal_insulation',
+      'project.tech.modern_materials'
+    ]
   }
 }
 
