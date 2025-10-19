@@ -59,31 +59,31 @@ const services = [
     name: 'services.new_construction', 
     description: 'home.services.descriptions.new_construction', 
     link: '/services/new-construction',
-    image: '/images/services/new_construction/photo_6028334436908648604_y.webp'
+    image: '/images/services/new_construction.webp'
   },
   { 
     name: 'services.comprehensive_renovation', 
     description: 'home.services.descriptions.comprehensive_renovation', 
     link: '/services/comprehensive-renovation',
-    image: '/images/services/comprehensive-renovation/photo_6028334436908648610_y.webp'
+    image: '/images/services/comprehensive-renovation.webp'
   },
   { 
     name: 'services.facade_works', 
     description: 'home.services.descriptions.facade_works', 
     link: '/services/facade-works',
-    image: '/images/services/facade-works/photo_6028424944754478134_y.webp'
+    image: '/images/services/facade-works.webp'
   },
   { 
     name: 'services.floor_sanding', 
     description: 'home.services.descriptions.floor_sanding', 
     link: '/services/floor-sanding',
-    image: '/images/services/floor-sanding/photo_6028334436908648615_y.webp'
+    image: '/images/services/floor-sanding.webp'
   },
   { 
     name: 'services.concrete_injection', 
     description: 'home.services.descriptions.concrete_injection', 
     link: '/services/concrete-injection',
-    image: '/images/services/concrete-injection/photo_6028334436908648619_y.webp'
+    image: '/images/services/concrete-injection.webp'
   }
 ]
 </script> 
