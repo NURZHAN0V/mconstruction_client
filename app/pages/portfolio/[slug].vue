@@ -19,9 +19,9 @@
       </header>
 
       <!-- Main Content -->
-      <main class="grid lg:grid-cols-12 lg:gap-12">
+      <main>
         <!-- Gallery -->
-        <div class="lg:col-span-8 mb-12 lg:mb-0">
+        <div class="max-w-6xl mx-auto">
           <div v-if="project.images && project.images.length > 0" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div 
               v-for="(image, index) in project.images" 
@@ -45,47 +45,6 @@
           </div>
         </div>
 
-        <!-- Project Details Sidebar -->
-        <aside class="lg:col-span-4">
-          <div class="sticky top-24">
-            <div class="bg-gray-50 rounded-lg p-6 mb-8">
-              <h2 class="text-2xl font-bold text-gray-900 mb-4">{{ $t('project.details_title') }}</h2>
-              <ul class="space-y-3 text-gray-700">
-                <li class="flex items-center">
-                  <Icon name="ri:calendar-2-line" class="w-5 h-5 mr-3 text-primary" />
-                  <strong>{{ $t('project.year') }}:</strong><span class="ml-auto">{{ project.year }}</span>
-                </li>
-                <li class="flex items-center">
-                  <Icon name="ri:map-pin-2-line" class="w-5 h-5 mr-3 text-primary" />
-                  <strong>{{ $t('project.location') }}:</strong><span class="ml-auto">{{ project.location }}</span>
-                </li>
-                <li class="flex items-center">
-                  <Icon name="ri:time-line" class="w-5 h-5 mr-3 text-primary" />
-                  <strong>{{ $t('project.duration') }}:</strong><span class="ml-auto">{{ project.duration }}</span>
-                </li>
-              </ul>
-            </div>
-
-            <div v-if="project.features" class="bg-gray-50 rounded-lg p-6 mb-8">
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{{ $t('project.features_title') }}</h3>
-              <ul class="space-y-2">
-                <li v-for="(feature, i) in project.features" :key="`feat-${i}`" class="flex items-start">
-                  <Icon name="ri:checkbox-circle-line" class="w-5 h-5 mr-3 mt-1 text-green-500 shrink-0" />
-                  <span>{{ $t(feature) }}</span>
-                </li>
-              </ul>
-            </div>
-
-            <div v-if="project.technologies" class="bg-gray-50 rounded-lg p-6">
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{{ $t('project.technologies_title') }}</h3>
-              <div class="flex flex-wrap gap-2">
-                <span v-for="(tech, i) in project.technologies" :key="`tech-${i}`" class="bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full">
-                  {{ $t(tech) }}
-                </span>
-              </div>
-            </div>
-          </div>
-        </aside>
       </main>
     </div>
 

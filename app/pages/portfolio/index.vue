@@ -65,7 +65,7 @@
                 </div>
                 <div>
                   <h3 class="font-bold text-lg text-gray-900">{{ $t('contacts.address_title') }}</h3>
-                  <p class="text-gray-700">Менелау Какоянни 16, Sonia Court 1, Ероскипу, Пафос</p>
+                  <p class="text-gray-700">{{ $t('contacts.address_value') }}</p>
                 </div>
               </div>
               <div class="flex items-start mb-6">
