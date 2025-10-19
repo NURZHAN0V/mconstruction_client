@@ -14,10 +14,10 @@
           </a>
         </div>
         <div class="flex items-center space-x-4">
-          <a href="#" class="text-gray-500 hover:text-blue-600 transition-colors" aria-label="Facebook">
+          <a href="https://www.facebook.com/share/15f93imTYv/?mibextid=wwXIfr" class="text-gray-500 hover:text-blue-600 transition-colors" aria-label="Facebook">
             <Icon name="ri:facebook-fill" class="w-5 h-5" />
           </a>
-          <a href="#" class="text-gray-500 hover:text-blue-600 transition-colors" aria-label="Instagram">
+          <a href="https://www.instagram.com/construction_kmc?igsh=MnhmMGJiZ3JlZmc5&utm_source=qr" class="text-gray-500 hover:text-blue-600 transition-colors" aria-label="Instagram">
             <Icon name="ri:instagram-line" class="w-5 h-5" />
           </a>
         </div>

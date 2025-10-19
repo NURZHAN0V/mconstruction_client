@@ -16,9 +16,9 @@
       </div>
 
       <!-- Service Details -->
-      <div class="grid lg:grid-cols-3 gap-12 mb-12">
+      <div class="mb-12">
         <!-- Main Content -->
-        <div class="lg:col-span-2">
+        <div class="max-w-5xl mx-auto">
           <div class="bg-white rounded-lg shadow-lg p-8">
             <h2 class="text-2xl font-bold text-dark mb-6">{{ $t('service.details_title') }}</h2>
             <div class="prose prose-lg max-w-none">
@@ -44,44 +44,6 @@
                     <span class="text-gray-600">{{ $t(benefit) }}</span>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Sidebar -->
-        <div class="lg:col-span-1">
-          <div class="bg-white rounded-lg shadow-lg p-6 sticky top-24">
-            <h3 class="text-xl font-bold text-dark mb-6">{{ $t('service.info_title') }}</h3>
-            
-            <div class="space-y-4">
-              <div class="flex justify-between items-center py-3 border-b border-gray-200">
-                <span class="font-semibold text-gray-700">{{ $t('service.category') }}:</span>
-                <span class="text-gray-600">{{ $t(service.categoryName) }}</span>
-              </div>
-              
-              <div class="flex justify-between items-center py-3 border-b border-gray-200">
-                <span class="font-semibold text-gray-700">{{ $t('service.duration') }}:</span>
-                <span class="text-gray-600">{{ service.duration }}</span>
-              </div>
-              
-              <div class="flex justify-between items-center py-3 border-b border-gray-200">
-                <span class="font-semibold text-gray-700">{{ $t('service.warranty') }}:</span>
-                <span class="text-gray-600">{{ service.warranty }}</span>
-              </div>
-            </div>
-
-            <!-- Technologies Used -->
-            <div v-if="service.technologies" class="mt-6">
-              <h4 class="font-semibold text-gray-700 mb-3">{{ $t('service.technologies_title') }}</h4>
-              <div class="flex flex-wrap gap-2">
-                <span
-                  v-for="tech in service.technologies"
-                  :key="tech"
-                  class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm"
-                >
-                  {{ $t(tech) }}
-                </span>
               </div>
             </div>
           </div>
@@ -186,7 +148,7 @@ const servicesData = {
     duration: '1-2 недели',
     warranty: '5 лет',
     images: [
-      { src: '/images/services/concrete-injection.webp', alt: 'Инъекция бетона - трещины' },
+      { src: '/images/services/concrete-injection.webp', alt: 'Инъектирование бетона - трещины' },
       { src: '/images/services/concrete-injection.webp', alt: 'Инъекционная гидроизоляция' },
       { src: '/images/services/concrete-injection.webp', alt: 'Восстановление конструкций' }
     ],

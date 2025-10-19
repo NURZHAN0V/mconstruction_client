@@ -27,7 +27,7 @@
         "phone_title": "Телефон",
         "email_title": "Электронная почта",
         "address_title": "Адрес",
-        "address_value": "Менелау Какоянни 16, Ероскипу, Пафос 8201",
+        "address_value": "Менелау Какоянни 16, Sonia Court 1, Ероскипу, Пафос",
         "form": {
             "name": "Имя",
             "email": "Электронная почта",
@@ -118,7 +118,7 @@
         "comprehensive_renovation": "Комплексный ремонт и обновление",
         "facade_works": "Фасадные работы",
         "floor_sanding": "Шлифовка пола",
-        "concrete_injection": "Инъекция бетона",
+        "concrete_injection": "Инъектирование бетона",
         "sub": {
             "design": "Проектирование жилых и нежилых помещений",
             "excavation": "Земляные работы",

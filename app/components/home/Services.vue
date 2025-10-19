@@ -94,13 +94,13 @@ const services = [
     name: 'services.floor_sanding', 
     description: 'home.services.descriptions.floor_sanding', 
     link: '/services/floor-sanding',
-    image: '/images/services/floor-sanding.webp'
+    image: '/images/services/photo_6023720555406019523_y.webp'
   },
   { 
     name: 'services.concrete_injection', 
     description: 'home.services.descriptions.concrete_injection', 
     link: '/services/concrete-injection',
-    image: '/images/services/concrete-injection.webp'
+    image: '/images/services/photo_6023720555406019524_x.webp'
   }
 ]
 
