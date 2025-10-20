@@ -84,7 +84,7 @@
         <div class="text-center">
           <h2 class="text-3xl md:text-4xl font-bold mb-6 text-primary">{{ $t('home.cta.title') }}</h2>
           <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">{{ $t('home.cta.subtitle') }}</p>
-          <CommonActionButtons :show-portfolio-button="false" :show-services-button="false" :transparent="true" />
+          <CommonActionButtons :show-call-button="true" :show-email-button="true" :show-portfolio-button="false" :show-services-button="false" :transparent="true" />
         </div>
       </div>
     </section>

@@ -56,14 +56,14 @@
         <!-- Arrows -->
         <button 
           @click="prev"
-          class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 flex items-center justify-center bg-white/90 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           aria-label="Previous project"
         >
           <Icon name="ri:arrow-left-s-line" class="w-6 h-6" />
         </button>
         <button 
           @click="next"
-          class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 flex items-center justify-center bg-white/90 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           aria-label="Next project"
         >
           <Icon name="ri:arrow-right-s-line" class="w-6 h-6" />

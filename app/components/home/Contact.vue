@@ -12,7 +12,7 @@
           <!-- Contact Details -->
           <div class="bg-white p-6 rounded-lg shadow-md">
             <div class="flex items-start mb-6">
-              <div class="bg-primary/10 p-3 rounded-full mr-4">
+              <div class="flex items-center justify-center bg-primary/10 p-3 rounded-full mr-4">
                 <Icon name="ri:phone-fill" class="w-6 h-6 text-primary" />
               </div>
               <div>
@@ -21,7 +21,7 @@
               </div>
             </div>
             <div class="flex items-start mb-6">
-              <div class="bg-primary/10 p-3 rounded-full mr-4">
+              <div class="flex items-center justify-center bg-primary/10 p-3 rounded-full mr-4">
                 <Icon name="ri:mail-fill" class="w-6 h-6 text-primary" />
               </div>
               <div>
@@ -30,7 +30,7 @@
               </div>
             </div>
             <div class="flex items-start">
-              <div class="bg-primary/10 p-3 rounded-full mr-4">
+              <div class="flex items-center justify-center bg-primary/10 p-3 rounded-full mr-4">
                 <Icon name="ri:map-pin-2-fill" class="w-6 h-6 text-primary" />
               </div>
               <div>
