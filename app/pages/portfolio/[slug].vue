@@ -256,7 +256,7 @@ const portfolioData = {
     images: [
       {
         src: '/images/portfolio/extension-construction/1.webp',
-        alt: 'Строительство пристройки к дому',
+        alt: 'Металлоконструкции к дому',
         thumbnail: '/images/portfolio/extension-construction/1.webp'
       },
       {
@@ -355,7 +355,7 @@ const portfolioData = {
     images: [
       {
         src: '/images/portfolio/troodos-house-construction/photo_6008277321888422211_y.webp',
-        alt: 'Сборка дома в Тродосе - фундамент и каркас',
+        alt: 'Деревянные конструкции - фундамент и каркас',
         thumbnail: '/images/portfolio/troodos-house-construction/photo_6008277321888422211_y.webp'
       },
       {
