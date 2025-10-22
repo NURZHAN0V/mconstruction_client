@@ -183,16 +183,6 @@ const portfolioData = {
         thumbnail: '/images/portfolio/monolithic-works/1.webp'
       },
       {
-        src: '/images/portfolio/monolithic-works/2.webp',
-        alt: 'Заливка бетона',
-        thumbnail: '/images/portfolio/monolithic-works/2.webp'
-      },
-      {
-        src: '/images/portfolio/monolithic-works/3.webp',
-        alt: 'Армирование конструкции',
-        thumbnail: '/images/portfolio/monolithic-works/3.webp'
-      },
-      {
         src: '/images/portfolio/monolithic-works/4.webp',
         alt: 'Армирование конструкции',
         thumbnail: '/images/portfolio/monolithic-works/4.webp'
@@ -201,11 +191,6 @@ const portfolioData = {
         src: '/images/portfolio/monolithic-works/5.webp',
         alt: 'Армирование конструкции',
         thumbnail: '/images/portfolio/monolithic-works/5.webp'
-      },
-      {
-        src: '/images/portfolio/monolithic-works/6.webp',
-        alt: 'Армирование конструкции',
-        thumbnail: '/images/portfolio/monolithic-works/6.webp'
       },
       {
         src: '/images/portfolio/monolithic-works/7.webp',
@@ -228,9 +213,19 @@ const portfolioData = {
         thumbnail: '/images/portfolio/monolithic-works/10.webp'
       },
       {
-        src: '/images/portfolio/monolithic-works/11.webp',
+        src: '/images/portfolio/monolithic-works/12.webp',
+        alt: 'Монолитные бетонные работы',
+        thumbnail: '/images/portfolio/monolithic-works/12.webp'
+      },
+      {
+        src: '/images/portfolio/monolithic-works/13.webp',
+        alt: 'Заливка бетона',
+        thumbnail: '/images/portfolio/monolithic-works/13.webp'
+      },
+      {
+        src: '/images/portfolio/monolithic-works/15.webp',
         alt: 'Армирование конструкции',
-        thumbnail: '/images/portfolio/monolithic-works/11.webp'
+        thumbnail: '/images/portfolio/monolithic-works/15.webp'
       }
     ],
     features: [
@@ -302,11 +297,6 @@ const portfolioData = {
     duration: '3-5 недель',
     images: [
       {
-        src: '/images/portfolio/roof-repair/1.webp',
-        alt: 'Ремонт кровли здания',
-        thumbnail: '/images/portfolio/roof-repair/1.webp'
-      },
-      {
         src: '/images/portfolio/roof-repair/2.webp',
         alt: 'Гидроизоляция кровли',
         thumbnail: '/images/portfolio/roof-repair/2.webp'
@@ -330,6 +320,11 @@ const portfolioData = {
         src: '/images/portfolio/roof-repair/6.webp',
         alt: 'Установка новых материалов',
         thumbnail: '/images/portfolio/roof-repair/6.webp'
+      },
+      {
+        src: '/images/portfolio/roof-repair/8.webp',
+        alt: 'Установка новых материалов',
+        thumbnail: '/images/portfolio/roof-repair/8.webp'
       }
     ],
     features: [

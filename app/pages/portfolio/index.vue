@@ -156,7 +156,7 @@ const portfolioProjects = [
     id: 3,
     title: 'portfolio.roof_repair',
     description: 'portfolio.descriptions.roof_repair',
-    image: '/images/portfolio/roof-repair/1.webp',
+    image: '/images/portfolio/roof-repair/2.webp',
     link: '/portfolio/roof-repair'
   },
   {
