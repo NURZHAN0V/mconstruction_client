@@ -123,7 +123,7 @@ const projects = [
     id: 4,
     title: 'portfolio.roof_repair',
     description: 'portfolio.descriptions.roof_repair',
-    image: '/images/portfolio/roof-repair/1.webp',
+    image: '/images/portfolio/roof-repair/8.webp',
     link: '/portfolio/roof-repair'
   },
   {
