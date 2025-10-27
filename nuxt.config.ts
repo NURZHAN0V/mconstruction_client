@@ -26,6 +26,7 @@ export default defineNuxtConfig({
     },
   },
   fonts: {
+    provider: 'google',
     families: [
       { name: 'Roboto', global: true },
       { name: 'Open Sans', global: true },
@@ -43,14 +44,14 @@ export default defineNuxtConfig({
     },
   },
   site: {
-    url: 'https://k-m-construction.com', 
+    url: 'https://k-m-construction.com',
     name: 'K.M Construction',
     description: 'K.M Construction in Cyprus',
     defaultLocale: 'en',
     indexable: true,
   },
   robots: {
-    disallow: ['/404'],
+    disallow: ['/404']
   },
   app: {
     head: {
@@ -64,16 +65,34 @@ export default defineNuxtConfig({
         }
       ],
       link: [],
-      script: []
+      script: [
+        {
+          src: 'https://www.googletagmanager.com/gtag/js?id=G-JQM4LMH3EG',
+          async: true,
+          tagPosition: 'head'
+        },
+        {
+          innerHTML: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-JQM4LMH3EG', {
+              send_page_view: false // отключаем автоматическую отправку
+            });
+          `,
+          type: 'text/javascript',
+          tagPosition: 'head'
+        }
+      ]
     }
   },
   nitro: {
-    compressPublicAssets: true,
+    compressPublicAssets: true
   },
   runtimeConfig: {
     public: {
       telegramBotToken: process.env.NUXT_PUBLIC_TELEGRAM_BOT_TOKEN || '',
-      telegramChatIds: process.env.NUXT_PUBLIC_TELEGRAM_CHAT_IDS || '',
+      telegramChatIds: process.env.NUXT_PUBLIC_TELEGRAM_CHAT_IDS || ''
     },
   },
 })
