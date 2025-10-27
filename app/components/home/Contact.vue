@@ -52,7 +52,7 @@
           </div>
         </div>
 
-        <!-- Contact Form -->
+        <!-- Контактная форма -->
         <div class="lg:col-span-2">
           <form @submit.prevent="submitForm" class="bg-white p-8 rounded-lg shadow-md">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
@@ -90,60 +90,106 @@
 </template>
 
 <script setup lang="ts">
-const form = ref({
-  name: '',
-  email: '',
-  message: ''
-})
-const errors = ref({
-  name: '',
-  email: '',
-  message: ''
-})
-const isSubmitting = ref(false)
-const submissionStatus = ref<'success' | 'error' | null>(null)
+import { useTelegram } from '~/composables/useTelegram'
 
-const validateForm = () => {
-  errors.value = { name: '', email: '', message: '' }
-  let isValid = true
-  if (!form.value.name) {
-    errors.value.name = 'Name is required'
-    isValid = false
-  }
-  if (!form.value.email) {
-    errors.value.email = 'Email is required'
-    isValid = false
-  } else if (!/\S+@\S+\.\S+/.test(form.value.email)) {
-    errors.value.email = 'Email is invalid'
-    isValid = false
-  }
-  if (!form.value.message) {
-    errors.value.message = 'Message is required'
-    isValid = false
-  }
-  return isValid
+// Интерфейсы для строгой типизации
+interface FormData {
+  name: string
+  email: string
+  message: string
 }
 
-async function submitForm() {
-  submissionStatus.value = null
-  if (!validateForm()) {
-    return
+interface FormErrors {
+  name?: string
+  email?: string
+  message?: string
+}
+
+// Состояния
+const form = ref<FormData>({ name: '', email: '', message: '' })
+const errors = ref<FormErrors>({})
+const isSubmitting = ref<boolean>(false)
+const submissionStatus = ref<'success' | 'error' | null>(null)
+
+// Проверка валидности email
+const isValidEmail = (email: string): boolean => {
+  // Более надежное регулярное выражение
+  const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+  return emailRegex.test(email)
+}
+
+// Функция валидации формы
+const validateForm = (): boolean => {
+  const newErrors: FormErrors = {}
+  const { name, email, message } = form.value
+
+  if (!name.trim()) {
+    newErrors.name = 'Name is required'
   }
-  
+  if (!email.trim()) {
+    newErrors.email = 'Email is required'
+  } else if (!isValidEmail(email.trim())) {
+    newErrors.email = 'Email is invalid'
+  }
+  if (!message.trim()) {
+    newErrors.message = 'Message is required'
+  }
+
+  errors.value = newErrors
+  return Object.keys(newErrors).length === 0
+}
+
+// Форматирование сообщения для Telegram (с экранированием)
+const formatTelegramMessage = (data: FormData): string => {
+  const escapedName = data.name.replace(/[_*[\]()~`>#+\-=|{}.!]/g, '\\$&')
+  const escapedEmail = data.email.replace(/[_*[\]()~`>#+\-=|{}.!]/g, '\\$&')
+  const escapedMessage = data.message.replace(/[_*[\]()~`>#+\-=|{}.!]/g, '\\$&')
+
+  return [
+    '*New contact form submission*',
+    `*Name:* ${escapedName}`,
+    `*Email:* ${escapedEmail}`,
+    '*Message:*',
+    escapedMessage
+  ].join('\n')
+}
+
+// Функция отправки формы
+const submitForm = async (): Promise<void> => {
+  // Защита от двойной отправки
+  if (isSubmitting.value) return
+
+  submissionStatus.value = null
+  if (!validateForm()) return
+
   isSubmitting.value = true
+
   try {
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    console.log('Form submitted:', form.value)
-    submissionStatus.value = 'success'
-    form.value = { name: '', email: '', message: '' }
-  } catch (error) {
+    const { sendMessage } = useTelegram()
+    const message = formatTelegramMessage(form.value)
+
+    const result = await sendMessage(message)
+
+    if (result?.success) {
+      submissionStatus.value = 'success'
+      // Сброс формы и ошибок после успешной отправки
+      form.value = { name: '', email: '', message: '' }
+      errors.value = {}
+    } else {
+      console.error('Telegram API error:', result)
+      submissionStatus.value = 'error'
+    }
+  } catch (error: unknown) { // Типизируем как unknown
+    console.error('Unexpected error during form submission:', error instanceof Error ? error.message : String(error))
     submissionStatus.value = 'error'
   } finally {
     isSubmitting.value = false
-    setTimeout(() => {
-      submissionStatus.value = null
-    }, 5000)
+    // Автоматический сброс статуса через 5 секунд
+    if (submissionStatus.value) {
+      setTimeout(() => {
+        submissionStatus.value = null
+      }, 5000)
+    }
   }
 }
-</script> 
+</script>

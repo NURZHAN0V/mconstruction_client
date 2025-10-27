@@ -1,3 +1,4 @@
+// app/composables/useTelegram.ts
 export const useTelegram = () => {
   const config = useRuntimeConfig()
 
@@ -5,7 +6,7 @@ export const useTelegram = () => {
     const { telegramBotToken, telegramChatIds } = config.public
 
     if (!telegramBotToken || !telegramChatIds) {
-      console.error('Переменные окружения Telegram не установлены в nuxt.config.ts')
+      console.error('Переменные окружения Telegram не установлены')
       return { success: false, error: 'Переменные окружения Telegram не установлены.' }
     }
 
@@ -21,14 +22,12 @@ export const useTelegram = () => {
             text: message,
             parse_mode: 'HTML',
           },
-        }),
+        })
       )
-      
+
       await Promise.all(requests)
-      
       return { success: true }
-    }
-    catch (error) {
+    } catch (error) {
       console.error('Не удалось отправить сообщение в Telegram:', error)
       return { success: false, error }
     }
