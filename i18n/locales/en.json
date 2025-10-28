@@ -306,9 +306,16 @@
         "description": "Leave your contact details, and we will contact you shortly.",
         "name_label": "Name",
         "name_placeholder": "John Doe",
+        "name_help": "Please enter your name",
         "phone_label": "Phone",
         "phone_placeholder": "+357 99 999999",
+        "phone_help": "Enter your phone number for contact",
+        "agreement_prefix": "I agree to the ",
+        "agreement_link_text": "Privacy Policy",
+        "agreement_suffix": " and consent to personal data processing.",
+        "agreement_help": "Agreement is required to submit the form",
         "submit_button": "Submit",
+        "submitting_button": "Submitting...",
         "cancel_button": "Cancel",
         "call_button_label": "Request a call"
     }

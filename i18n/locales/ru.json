@@ -297,13 +297,20 @@
         }
     },
     "call_modal": {
-        "title": "Заказать звонок",
-        "description": "Оставьте свои контактные данные, и мы свяжемся с вами в ближайшее время.",
-        "name_label": "Имя",
-        "name_placeholder": "Иван Иванов",
-        "phone_label": "Телефон",
-        "phone_placeholder": "+7 (999) 999-99-99",
+        "title": "Заказать обратный звонок",
+        "description": "Оставьте свои контакты, и мы свяжемся с вами в ближайшее время.",
+        "name_label": "Ваше имя",
+        "name_placeholder": "Иван",
+        "name_help": "Пожалуйста, укажите ваше имя",
+        "phone_label": "Номер телефона",
+        "phone_placeholder": "+7 (XXX) XXX-XX-XX",
+        "phone_help": "Введите ваш номер телефона для связи",
+        "agreement_prefix": "Я согласен с ",
+        "agreement_link_text": "политикой конфиденциальности",
+        "agreement_suffix": " и даю согласие на обработку персональных данных.",
+        "agreement_help": "Обязательное согласие для отправки формы",
         "submit_button": "Отправить",
+        "submitting_button": "Отправка...",
         "cancel_button": "Отмена",
         "call_button_label": "Заказать звонок"
     }

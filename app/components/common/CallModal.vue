@@ -36,9 +36,12 @@
                     </div>
                   </div>
                 </div>
+
+                <!-- Форма -->
                 <form @submit.prevent="handleSubmit" class="mt-5 space-y-4">
+                  <!-- Имя -->
                   <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700">{{ $t('call_modal.name_label') }}</label>
+                    <label for="name" class="block text-sm font-medium text-gray-700">{{ $t('call_modal.name_label') }} <span class="text-base text-red-500">*</span></label>
                     <input
                       id="name"
                       v-model="form.name"
@@ -47,10 +50,17 @@
                       required
                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                       :placeholder="$t('call_modal.name_placeholder')"
+                      :class="{ 'border-red-500': errors.name }"
+                      aria-describedby="name-help"
                     >
+                    <p v-if="errors.name" class="mt-1 text-xs text-red-500">
+                      {{ errors.name }}
+                    </p>
                   </div>
+
+                  <!-- Телефон -->
                   <div>
-                    <label for="phone" class="block text-sm font-medium text-gray-700">{{ $t('call_modal.phone_label') }}</label>
+                    <label for="phone" class="block text-sm font-medium text-gray-700">{{ $t('call_modal.phone_label') }} <span class="text-base text-red-500">*</span></label>
                     <input
                       id="phone"
                       v-model="form.phone"
@@ -59,20 +69,67 @@
                       required
                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                       :placeholder="$t('call_modal.phone_placeholder')"
+                      :class="{ 'border-red-500': errors.phone }"
+                      aria-describedby="phone-help"
                     >
+                    <p v-if="errors.phone" class="mt-1 text-xs text-red-500">
+                      {{ errors.phone }}
+                    </p>
+                  </div>
+
+                  <!-- Согласие -->
+                  <div class="flex items-start">
+                    <div class="flex h-6 items-center">
+                      <input
+                        id="agreement"
+                        v-model="form.agreed"
+                        name="agreement"
+                        type="checkbox"
+                        required
+                        class="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-500"
+                        :class="{ 'border-red-500': errors.agreed }"
+                        aria-describedby="agreement-help"
+                      />
+                    </div>
+                    <div class="ml-3 text-sm leading-6">
+                      <label for="agreement" class="text-gray-700">
+                        {{ $t('call_modal.agreement_prefix') }}
+                        <a
+                          href="/privacy-policy"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="font-medium text-green-600 hover:text-green-500"
+                        >
+                          {{ $t('call_modal.agreement_link_text') }}
+                        </a>
+                        {{ $t('call_modal.agreement_suffix') }}
+                      </label>
+                      <p v-if="errors.agreed" class="mt-1 text-xs text-red-500">
+                        {{ errors.agreed }}
+                      </p>
+                    </div>
                   </div>
                 </form>
               </div>
+
               <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                 <button
                   type="button"
+                  :disabled="loading"
                   class="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 sm:ml-3 sm:w-auto"
                   @click="handleSubmit"
                 >
-                  {{ $t('call_modal.submit_button') }}
+                  <span v-if="loading" class="flex items-center">
+                    <span class="h-4 w-4 animate-spin rounded-full border-b-2 border-t-2 border-white mr-2"></span>
+                    {{ $t('call_modal.submitting_button') }}
+                  </span>
+                  <span v-else>
+                    {{ $t('call_modal.submit_button') }}
+                  </span>
                 </button>
                 <button
                   type="button"
+                  :disabled="loading"
                   class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
                   @click="closeModal"
                 >
@@ -88,37 +145,107 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  isOpen: {
-    type: Boolean,
-    required: true,
-  },
-})
+import { ref, reactive, onMounted, onBeforeUnmount } from 'vue'
 
-const emit = defineEmits(['close'])
+// Принимаем isOpen как пропс
+const props = defineProps<{
+  isOpen: boolean
+}>()
+
+// Испускаем событие close
+const emit = defineEmits<{
+  close: []
+}>()
+
+const loading = ref(false)
+const errors = reactive({
+  name: '',
+  phone: '',
+  agreed: '',
+})
 
 const { sendMessage } = useTelegram()
 
 const form = ref({
   name: '',
   phone: '',
+  agreed: false,
 })
 
 function closeModal() {
-  emit('close')
+  emit('close') // Испускаем событие для закрытия
+  resetForm()
+}
+
+function resetForm() {
+  form.value.name = ''
+  form.value.phone = ''
+  form.value.agreed = false
+  errors.name = ''
+  errors.phone = ''
+  errors.agreed = ''
+}
+
+function validateForm() {
+  let isValid = true
+
+  // Проверка имени
+  if (!form.value.name.trim()) {
+    errors.name = 'Пожалуйста, укажите ваше имя.'
+    isValid = false
+  } else {
+    errors.name = ''
+  }
+
+  // Проверка телефона
+  if (!form.value.phone.trim()) {
+    errors.phone = 'Пожалуйста, укажите номер телефона.'
+    isValid = false
+  } else {
+    const phoneRegex = /^[\+]?[0-9\s\-\(\)]{7,15}$/ // Простая валидация
+    if (!phoneRegex.test(form.value.phone.trim())) {
+      errors.phone = 'Введите корректный номер телефона.'
+      isValid = false
+    } else {
+      errors.phone = ''
+    }
+  }
+
+  // Проверка согласия
+  if (!form.value.agreed) {
+    errors.agreed = 'Вы должны согласиться с условиями.'
+    isValid = false
+  } else {
+    errors.agreed = ''
+  }
+
+  return isValid
 }
 
 async function handleSubmit() {
-  const message = `
+  if (!validateForm()) {
+    return
+  }
+
+  loading.value = true
+
+  try {
+    const message = `
 <b>Новая заявка на звонок!</b>
 <b>Имя:</b> ${form.value.name}
 <b>Телефон:</b> ${form.value.phone}
 `
-  await sendMessage(message)
+    await sendMessage(message)
 
-  form.value.name = ''
-  form.value.phone = ''
-  closeModal()
+    // Сброс формы и закрытие
+    resetForm()
+    emit('close')
+  } catch (err) {
+    console.error('Ошибка при отправке:', err)
+    // Можно показать уведомление об ошибке
+  } finally {
+    loading.value = false
+  }
 }
 
 function onEscape(e: KeyboardEvent) {
