@@ -94,14 +94,14 @@
                     <div class="ml-3 text-sm leading-6">
                       <label for="agreement" class="text-gray-700">
                         {{ $t('call_modal.agreement_prefix') }}
-                        <a
+                        <NuxtLink
                           href="/privacy-policy"
                           target="_blank"
                           rel="noopener noreferrer"
                           class="font-medium text-green-600 hover:text-green-500"
                         >
                           {{ $t('call_modal.agreement_link_text') }}
-                        </a>
+                        </NuxtLink>
                         {{ $t('call_modal.agreement_suffix') }}
                       </label>
                       <p v-if="errors.agreed" class="mt-1 text-xs text-red-500">
