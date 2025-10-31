@@ -72,16 +72,53 @@
               <textarea id="message" v-model="form.message" required rows="6" class="w-full px-4 py-3 border rounded-md focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow" :class="{'border-red-500': errors.message}"></textarea>
               <p v-if="errors.message" class="text-red-500 text-sm mt-1">{{ errors.message }}</p>
             </div>
+            
+            <!-- Согласие -->
+            <div class="flex items-start mb-6">
+              <div class="flex h-6 items-center">
+                <input
+                  id="agreement"
+                  v-model="form.agreed"
+                  name="agreement"
+                  type="checkbox"
+                  required
+                  class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                  :class="{ 'border-red-500': errors.agreed }"
+                  aria-describedby="agreement-help"
+                />
+              </div>
+              <div class="ml-3 text-sm leading-6">
+                <label for="agreement" class="text-gray-700">
+                  {{ $t('contacts.form.agreement_prefix') }}
+                  <NuxtLink
+                    href="/privacy-policy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="font-medium text-primary hover:text-blue-600 transition-colors"
+                  >
+                    {{ $t('contacts.form.agreement_link_text') }}
+                  </NuxtLink>
+                  {{ $t('contacts.form.agreement_suffix') }}
+                </label>
+                <p v-if="errors.agreed" class="mt-1 text-xs text-red-500">
+                  {{ errors.agreed }}
+                </p>
+              </div>
+            </div>
+            
             <button 
               type="submit" 
-              class="w-full bg-primary text-white font-bold py-3 px-6 rounded-md hover:bg-blue-600 transition-colors duration-300 disabled:bg-gray-400"
+              class="w-full bg-primary text-white font-bold py-3 px-6 rounded-md hover:bg-blue-600 transition-colors duration-300 disabled:bg-gray-400 disabled:cursor-not-allowed"
               :disabled="isSubmitting"
             >
-              <span v-if="isSubmitting">Sending...</span>
+              <span v-if="isSubmitting" class="flex items-center justify-center">
+                <span class="h-4 w-4 animate-spin rounded-full border-b-2 border-t-2 border-white mr-2"></span>
+                {{ $t('contacts.form.submitting') }}
+              </span>
               <span v-else>{{ $t('contacts.form.submit') }}</span>
             </button>
-            <p v-if="submissionStatus === 'success'" class="text-green-600 mt-4 text-center">Thank you for your message!</p>
-            <p v-if="submissionStatus === 'error'" class="text-red-600 mt-4 text-center">Something went wrong. Please try again.</p>
+            <p v-if="submissionStatus === 'success'" class="text-green-600 mt-4 text-center">{{ $t('contacts.form.success_message') }}</p>
+            <p v-if="submissionStatus === 'error'" class="text-red-600 mt-4 text-center">{{ $t('contacts.form.error_message') }}</p>
           </form>
         </div>
       </div>
@@ -97,17 +134,17 @@ interface FormData {
   name: string
   email: string
   message: string
-}
-
-interface FormErrors {
-  name?: string
-  email?: string
-  message?: string
+  agreed: boolean
 }
 
 // Состояния
-const form = ref<FormData>({ name: '', email: '', message: '' })
-const errors = ref<FormErrors>({})
+const form = ref<FormData>({ name: '', email: '', message: '', agreed: false })
+const errors = reactive({
+  name: '',
+  email: '',
+  message: '',
+  agreed: '',
+})
 const isSubmitting = ref<boolean>(false)
 const submissionStatus = ref<'success' | 'error' | null>(null)
 
@@ -119,24 +156,45 @@ const isValidEmail = (email: string): boolean => {
 }
 
 // Функция валидации формы
+const { t } = useI18n()
+
 const validateForm = (): boolean => {
-  const newErrors: FormErrors = {}
-  const { name, email, message } = form.value
+  let isValid = true
 
-  if (!name.trim()) {
-    newErrors.name = 'Name is required'
-  }
-  if (!email.trim()) {
-    newErrors.email = 'Email is required'
-  } else if (!isValidEmail(email.trim())) {
-    newErrors.email = 'Email is invalid'
-  }
-  if (!message.trim()) {
-    newErrors.message = 'Message is required'
+  // Очистка предыдущих ошибок
+  errors.name = ''
+  errors.email = ''
+  errors.message = ''
+  errors.agreed = ''
+
+  // Проверка имени
+  if (!form.value.name.trim()) {
+    errors.name = t('contacts.form.errors.name_required')
+    isValid = false
   }
 
-  errors.value = newErrors
-  return Object.keys(newErrors).length === 0
+  // Проверка email
+  if (!form.value.email.trim()) {
+    errors.email = t('contacts.form.errors.email_required')
+    isValid = false
+  } else if (!isValidEmail(form.value.email.trim())) {
+    errors.email = t('contacts.form.errors.email_invalid')
+    isValid = false
+  }
+
+  // Проверка сообщения
+  if (!form.value.message.trim()) {
+    errors.message = t('contacts.form.errors.message_required')
+    isValid = false
+  }
+
+  // Проверка согласия
+  if (!form.value.agreed) {
+    errors.agreed = t('contacts.form.errors.agreement_required')
+    isValid = false
+  }
+
+  return isValid
 }
 
 // Форматирование сообщения для Telegram (с экранированием)
@@ -146,10 +204,10 @@ const formatTelegramMessage = (data: FormData): string => {
   const escapedMessage = data.message.replace(/[_*[\]()~`>#+\-=|{}.!]/g, '\\$&')
 
   return [
-    '*New contact form submission*',
-    `*Name:* ${escapedName}`,
-    `*Email:* ${escapedEmail}`,
-    '*Message:*',
+    '**New contact form submission**',
+    `**Name:** ${escapedName}`,
+    `**Email:** ${escapedEmail}`,
+    '**Message:**',
     escapedMessage
   ].join('\n')
 }
@@ -173,8 +231,11 @@ const submitForm = async (): Promise<void> => {
     if (result?.success) {
       submissionStatus.value = 'success'
       // Сброс формы и ошибок после успешной отправки
-      form.value = { name: '', email: '', message: '' }
-      errors.value = {}
+      form.value = { name: '', email: '', message: '', agreed: false }
+      errors.name = ''
+      errors.email = ''
+      errors.message = ''
+      errors.agreed = ''
     } else {
       console.error('Telegram API error:', result)
       submissionStatus.value = 'error'
