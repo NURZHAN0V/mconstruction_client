@@ -73,6 +73,12 @@
               <p v-if="errors.message" class="text-red-500 text-sm mt-1">{{ errors.message }}</p>
             </div>
             
+            <!-- Honeypot поле для защиты от ботов (скрыто от пользователей) -->
+            <div style="position: absolute; left: -9999px; opacity: 0; pointer-events: none;" aria-hidden="true">
+              <label for="website">Website</label>
+              <input type="text" id="website" name="website" v-model="form.website" tabindex="-1" autocomplete="off" />
+            </div>
+            
             <!-- Согласие -->
             <div class="flex items-start mb-6">
               <div class="flex h-6 items-center">
@@ -118,7 +124,7 @@
               <span v-else>{{ $t('contacts.form.submit') }}</span>
             </button>
             <p v-if="submissionStatus === 'success'" class="text-green-600 mt-4 text-center">{{ $t('contacts.form.success_message') }}</p>
-            <p v-if="submissionStatus === 'error'" class="text-red-600 mt-4 text-center">{{ $t('contacts.form.error_message') }}</p>
+            <p v-if="submissionStatus === 'error'" class="text-red-600 mt-4 text-center">{{ errors.general || $t('contacts.form.error_message') }}</p>
           </form>
         </div>
       </div>
@@ -127,7 +133,6 @@
 </template>
 
 <script setup lang="ts">
-import { useTelegram } from '~/composables/useTelegram'
 
 // Интерфейсы для строгой типизации
 interface FormData {
@@ -135,18 +140,43 @@ interface FormData {
   email: string
   message: string
   agreed: boolean
+  website: string // Honeypot поле
+}
+
+interface ApiResponse {
+  success: boolean
+  message?: string
+  rateLimit?: {
+    remaining: number
+    resetTime: number
+  }
+}
+
+interface FetchError {
+  statusCode?: number
+  statusMessage?: string
+  message?: string
 }
 
 // Состояния
-const form = ref<FormData>({ name: '', email: '', message: '', agreed: false })
+const form = ref<FormData>({ name: '', email: '', message: '', agreed: false, website: '' })
 const errors = reactive({
   name: '',
   email: '',
   message: '',
   agreed: '',
+  general: '',
 })
 const isSubmitting = ref<boolean>(false)
 const submissionStatus = ref<'success' | 'error' | null>(null)
+
+// Клиентский rate limiting
+const lastSubmissionTime = ref<number>(0)
+const MIN_SUBMISSION_INTERVAL = 30000 // 30 секунд между отправками
+const submissionAttempts = ref<number>(0)
+const MAX_CLIENT_ATTEMPTS = 5 // Максимум 5 попыток подряд
+const lastAttemptResetTime = ref<number>(0)
+const ATTEMPT_RESET_WINDOW = 60 * 60 * 1000 // 1 час
 
 // Проверка валидности email
 const isValidEmail = (email: string): boolean => {
@@ -194,23 +224,46 @@ const validateForm = (): boolean => {
     isValid = false
   }
 
+  // Проверка honeypot поля
+  if (form.value.website && form.value.website.trim() !== '') {
+    errors.general = 'Обнаружена спам-активность'
+    isValid = false
+  }
+
   return isValid
 }
 
-// Форматирование сообщения для Telegram (с экранированием)
-const formatTelegramMessage = (data: FormData): string => {
-  const escapedName = data.name.replace(/[_*[\]()~`>#+\-=|{}.!]/g, '\\$&')
-  const escapedEmail = data.email.replace(/[_*[\]()~`>#+\-=|{}.!]/g, '\\$&')
-  const escapedMessage = data.message.replace(/[_*[\]()~`>#+\-=|{}.!]/g, '\\$&')
+// Проверка клиентского rate limiting
+const checkClientRateLimit = (): { allowed: boolean; message?: string } => {
+  const now = Date.now()
+  
+  // Проверка минимального интервала между отправками
+  const timeSinceLastSubmission = now - lastSubmissionTime.value
+  if (timeSinceLastSubmission < MIN_SUBMISSION_INTERVAL) {
+    const remainingSeconds = Math.ceil((MIN_SUBMISSION_INTERVAL - timeSinceLastSubmission) / 1000)
+    return {
+      allowed: false,
+      message: t('contacts.form.errors.rate_limit', { seconds: remainingSeconds })
+    }
+  }
 
-  return [
-    '**New contact form submission**',
-    `**Name:** ${escapedName}`,
-    `**Email:** ${escapedEmail}`,
-    '**Message:**',
-    escapedMessage
-  ].join('\n')
+  // Проверка количества попыток
+  if (now - lastAttemptResetTime.value > ATTEMPT_RESET_WINDOW) {
+    submissionAttempts.value = 0
+    lastAttemptResetTime.value = now
+  }
+
+  if (submissionAttempts.value >= MAX_CLIENT_ATTEMPTS) {
+    const resetTime = Math.ceil((ATTEMPT_RESET_WINDOW - (now - lastAttemptResetTime.value)) / (60 * 1000))
+    return {
+      allowed: false,
+      message: t('contacts.form.errors.too_many_attempts', { minutes: resetTime })
+    }
+  }
+
+  return { allowed: true }
 }
+
 
 // Функция отправки формы
 const submitForm = async (): Promise<void> => {
@@ -218,30 +271,73 @@ const submitForm = async (): Promise<void> => {
   if (isSubmitting.value) return
 
   submissionStatus.value = null
+  errors.general = ''
+  
+  // Валидация формы
   if (!validateForm()) return
 
+  // Проверка клиентского rate limiting
+  const rateLimitCheck = checkClientRateLimit()
+  if (!rateLimitCheck.allowed) {
+    errors.general = rateLimitCheck.message || 'Слишком много попыток. Пожалуйста, подождите.'
+    submissionStatus.value = 'error'
+    return
+  }
+
   isSubmitting.value = true
+  submissionAttempts.value++
 
   try {
-    const { sendMessage } = useTelegram()
-    const message = formatTelegramMessage(form.value)
-
-    const result = await sendMessage(message)
+    // Отправка на серверный API endpoint
+    const result = await $fetch<ApiResponse>('/api/contact', {
+      method: 'POST',
+      body: {
+        name: form.value.name.trim(),
+        email: form.value.email.trim(),
+        message: form.value.message.trim(),
+        website: form.value.website, // Honeypot поле
+      },
+    })
 
     if (result?.success) {
       submissionStatus.value = 'success'
+      lastSubmissionTime.value = Date.now()
+      submissionAttempts.value = 0 // Сброс счетчика при успешной отправке
+      
       // Сброс формы и ошибок после успешной отправки
-      form.value = { name: '', email: '', message: '', agreed: false }
+      form.value = { name: '', email: '', message: '', agreed: false, website: '' }
       errors.name = ''
       errors.email = ''
       errors.message = ''
       errors.agreed = ''
+      errors.general = ''
     } else {
-      console.error('Telegram API error:', result)
       submissionStatus.value = 'error'
+      errors.general = result?.message || 'Ошибка при отправке сообщения'
     }
-  } catch (error: unknown) { // Типизируем как unknown
-    console.error('Unexpected error during form submission:', error instanceof Error ? error.message : String(error))
+  } catch (error: unknown) {
+    console.error('Unexpected error during form submission:', error)
+    
+    // Обработка различных типов ошибок
+    const defaultErrorMessage = 'Произошла ошибка при отправке сообщения. Пожалуйста, попробуйте позже.'
+    let errorMessage = defaultErrorMessage
+    
+    // Проверка на FetchError от $fetch
+    if (error && typeof error === 'object' && 'statusCode' in error) {
+      const fetchError = error as FetchError
+      if (fetchError.statusCode === 429) {
+        errorMessage = fetchError.statusMessage || 'Слишком много запросов. Пожалуйста, подождите перед повторной отправкой.'
+        lastSubmissionTime.value = Date.now()
+      } else if (fetchError.statusCode === 400) {
+        errorMessage = fetchError.statusMessage || 'Ошибка валидации данных'
+      } else {
+        errorMessage = fetchError.statusMessage || fetchError.message || defaultErrorMessage
+      }
+    } else if (error instanceof Error) {
+      errorMessage = error.message || defaultErrorMessage
+    }
+    
+    errors.general = errorMessage
     submissionStatus.value = 'error'
   } finally {
     isSubmitting.value = false
@@ -249,6 +345,7 @@ const submitForm = async (): Promise<void> => {
     if (submissionStatus.value) {
       setTimeout(() => {
         submissionStatus.value = null
+        errors.general = ''
       }, 5000)
     }
   }

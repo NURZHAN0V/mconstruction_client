@@ -42,7 +42,9 @@
                 "email_required": "Please enter your email address.",
                 "email_invalid": "Please enter a valid email address.",
                 "message_required": "Please enter your message.",
-                "agreement_required": "You must agree to the terms."
+                "agreement_required": "You must agree to the terms.",
+                "rate_limit": "Please wait {seconds} seconds before submitting again.",
+                "too_many_attempts": "Too many attempts. Please try again in {minutes} minutes."
             },
             "success_message": "Thank you for your message! We will contact you shortly.",
             "error_message": "Something went wrong. Please try again."
