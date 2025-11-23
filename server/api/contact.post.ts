@@ -35,12 +35,15 @@ function getClientIP(event: H3Event): string {
   const realIP = req.headers['x-real-ip']
   
   if (forwarded && typeof forwarded === 'string') {
-    return forwarded.split(',')[0].trim()
+    const firstIP = forwarded.split(',')[0]?.trim()
+    if (firstIP) {
+      return firstIP
+    }
   }
   if (realIP && typeof realIP === 'string') {
     return realIP
   }
-  return req.socket.remoteAddress || 'unknown'
+  return req.socket?.remoteAddress || 'unknown'
 }
 
 // Проверка rate limiting
