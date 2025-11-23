@@ -73,7 +73,7 @@ export default defineNuxtConfig({
       link: [],
       script: [
         {
-          src: 'https://www.googletagmanager.com/gtag/js?id=G-JQM4LMH3EG',
+          src: 'https://www.googletagmanager.com/gtag/js?id=G-PB1SWFB4QE',
           async: true,
           tagPosition: 'head'
         },
@@ -82,7 +82,7 @@ export default defineNuxtConfig({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-JQM4LMH3EG', {
+            gtag('config', 'G-PB1SWFB4QE', {
               send_page_view: false // отключаем автоматическую отправку
             });
           `,
