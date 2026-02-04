@@ -140,14 +140,23 @@ function validateFormData(data: unknown): { valid: boolean; error?: string } {
 
   const { name, email, message } = formData
 
+  const MAX_NAME = 200
+  const MAX_EMAIL = 254
+  const MAX_MESSAGE = 5000
+
   if (!name || typeof name !== 'string' || name.trim().length < 2) {
     return { valid: false, error: 'Имя должно содержать минимум 2 символа' }
+  }
+  if (name.length > MAX_NAME) {
+    return { valid: false, error: 'Имя слишком длинное' }
   }
 
   if (!email || typeof email !== 'string') {
     return { valid: false, error: 'Email обязателен' }
   }
-
+  if (email.length > MAX_EMAIL) {
+    return { valid: false, error: 'Некорректный email' }
+  }
   const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
   if (!emailRegex.test(email.trim())) {
     return { valid: false, error: 'Некорректный email' }
@@ -155,6 +164,9 @@ function validateFormData(data: unknown): { valid: boolean; error?: string } {
 
   if (!message || typeof message !== 'string' || message.trim().length < 10) {
     return { valid: false, error: 'Сообщение должно содержать минимум 10 символов' }
+  }
+  if (message.length > MAX_MESSAGE) {
+    return { valid: false, error: 'Сообщение слишком длинное' }
   }
 
   // Проверка на подозрительные паттерны в сообщении

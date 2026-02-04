@@ -100,14 +100,23 @@ function validateCallbackData(data: unknown): { valid: boolean; error?: string }
     return { valid: false, error: 'Spam detected' }
   }
 
+  const MAX_NAME = 200
+  const MAX_PHONE = 20
+
   const { name, phone } = form
   if (!name || typeof name !== 'string' || name.trim().length < 2) {
     return { valid: false, error: 'Имя должно содержать минимум 2 символа' }
   }
+  if (name.length > MAX_NAME) {
+    return { valid: false, error: 'Имя слишком длинное' }
+  }
   if (!phone || typeof phone !== 'string') {
     return { valid: false, error: 'Телефон обязателен' }
   }
-  // Нормализованный формат с клиента: + и 10–15 цифр без пробелов
+  if (phone.length > MAX_PHONE) {
+    return { valid: false, error: 'Введите корректный номер телефона.' }
+  }
+  // Нормализованный формат: + и 10–15 цифр без пробелов
   const phoneNormalized = phone.trim().replace(/\s/g, '')
   const phoneRegex = /^\+[0-9]{10,15}$/
   if (!phoneRegex.test(phoneNormalized)) {
