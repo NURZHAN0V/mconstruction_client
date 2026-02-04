@@ -268,24 +268,28 @@ const checkClientRateLimit = (): { allowed: boolean; message?: string } => {
 
 // Функция отправки формы
 const submitForm = async (): Promise<void> => {
-  // Защита от двойной отправки
+  // Защита от двойной отправки — блокируем сразу, до любой асинхронной логики
   if (isSubmitting.value) return
+  isSubmitting.value = true
 
   submissionStatus.value = null
   errors.general = ''
-  
+
   // Валидация формы
-  if (!validateForm()) return
+  if (!validateForm()) {
+    isSubmitting.value = false
+    return
+  }
 
   // Проверка клиентского rate limiting
   const rateLimitCheck = checkClientRateLimit()
   if (!rateLimitCheck.allowed) {
     errors.general = rateLimitCheck.message || 'Слишком много попыток. Пожалуйста, подождите.'
     submissionStatus.value = 'error'
+    isSubmitting.value = false
     return
   }
 
-  isSubmitting.value = true
   submissionAttempts.value++
 
   try {
