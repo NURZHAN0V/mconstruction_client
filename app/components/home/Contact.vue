@@ -156,6 +156,7 @@ interface FetchError {
   statusCode?: number
   statusMessage?: string
   message?: string
+  data?: { message?: string }
 }
 
 // Состояния
@@ -322,16 +323,17 @@ const submitForm = async (): Promise<void> => {
     const defaultErrorMessage = 'Произошла ошибка при отправке сообщения. Пожалуйста, попробуйте позже.'
     let errorMessage = defaultErrorMessage
     
-    // Проверка на FetchError от $fetch
+    // Проверка на FetchError от $fetch (H3 присылает текст в data.message)
     if (error && typeof error === 'object' && 'statusCode' in error) {
       const fetchError = error as FetchError
+      const bodyMessage = fetchError.data?.message
       if (fetchError.statusCode === 429) {
-        errorMessage = fetchError.statusMessage || 'Слишком много запросов. Пожалуйста, подождите перед повторной отправкой.'
+        errorMessage = bodyMessage || fetchError.statusMessage || 'Слишком много запросов. Пожалуйста, подождите перед повторной отправкой.'
         lastSubmissionTime.value = Date.now()
       } else if (fetchError.statusCode === 400) {
-        errorMessage = fetchError.statusMessage || 'Ошибка валидации данных'
+        errorMessage = bodyMessage || fetchError.statusMessage || 'Ошибка валидации данных'
       } else {
-        errorMessage = fetchError.statusMessage || fetchError.message || defaultErrorMessage
+        errorMessage = bodyMessage || fetchError.statusMessage || fetchError.message || defaultErrorMessage
       }
     } else if (error instanceof Error) {
       errorMessage = error.message || defaultErrorMessage

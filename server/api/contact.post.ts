@@ -179,7 +179,7 @@ export default defineEventHandler(async (event) => {
   if (event.node.req.method !== 'POST') {
     throw createError({
       statusCode: 405,
-      statusMessage: 'Method Not Allowed'
+      message: 'Method Not Allowed'
     })
   }
 
@@ -193,7 +193,7 @@ export default defineEventHandler(async (event) => {
       const resetInSeconds = Math.ceil((rateLimit.resetTime - Date.now()) / 1000)
       throw createError({
         statusCode: 429,
-        statusMessage: `Too Many Requests. Попробуйте снова через ${Math.ceil(resetInSeconds / 60)} минут.`
+        message: `Too Many Requests. Попробуйте снова через ${Math.ceil(resetInSeconds / 60)} минут.`
       })
     }
 
@@ -202,7 +202,7 @@ export default defineEventHandler(async (event) => {
     if (!validation.valid) {
       throw createError({
         statusCode: 400,
-        statusMessage: validation.error || 'Ошибка валидации'
+        message: validation.error || 'Ошибка валидации'
       })
     }
 
@@ -213,7 +213,7 @@ export default defineEventHandler(async (event) => {
     if (isDuplicateSubmission(ip, formData.email, formData.message)) {
       throw createError({
         statusCode: 429,
-        statusMessage: 'Вы уже отправили это сообщение. Пожалуйста, подождите перед повторной отправкой.'
+        message: 'Вы уже отправили это сообщение. Пожалуйста, подождите перед повторной отправкой.'
       })
     }
 
@@ -226,7 +226,7 @@ export default defineEventHandler(async (event) => {
       console.error('Переменные окружения Telegram не установлены')
       throw createError({
         statusCode: 500,
-        statusMessage: 'Ошибка конфигурации сервера'
+        message: 'Ошибка конфигурации сервера'
       })
     }
 
@@ -289,7 +289,7 @@ export default defineEventHandler(async (event) => {
     console.error('Ошибка при обработке формы:', error instanceof Error ? error.message : String(error))
     throw createError({
       statusCode: 500,
-      statusMessage: 'Произошла ошибка при отправке сообщения. Пожалуйста, попробуйте позже.'
+      message: 'Произошла ошибка при отправке сообщения. Пожалуйста, попробуйте позже.'
     })
   }
 })
