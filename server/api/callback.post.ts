@@ -107,8 +107,10 @@ function validateCallbackData(data: unknown): { valid: boolean; error?: string }
   if (!phone || typeof phone !== 'string') {
     return { valid: false, error: 'Телефон обязателен' }
   }
-  const phoneRegex = /^[\+]?[0-9\s\-\(\)]{7,15}$/
-  if (!phoneRegex.test(phone.trim())) {
+  // Нормализованный формат с клиента: + и 10–15 цифр без пробелов
+  const phoneNormalized = phone.trim().replace(/\s/g, '')
+  const phoneRegex = /^\+[0-9]{10,15}$/
+  if (!phoneRegex.test(phoneNormalized)) {
     return { valid: false, error: 'Введите корректный номер телефона.' }
   }
   return { valid: true }

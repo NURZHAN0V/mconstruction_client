@@ -9,7 +9,7 @@
   >
     <div v-if="isOpen" class="relative z-50" aria-labelledby="modal-title" role="dialog" aria-modal="true">
       <div @click="closeModal" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-      <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+      <div class="fixed inset-0 z-10 w-screen">
         <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
           <Transition
             enter-active-class="transition ease-out duration-300"
@@ -58,21 +58,18 @@
                     </p>
                   </div>
 
-                  <!-- Телефон -->
+                  <!-- Телефон: маска с выбором кода страны -->
                   <div>
                     <label for="phone" class="block text-sm font-medium text-gray-700">{{ $t('call_modal.phone_label') }} <span class="text-base text-red-500">*</span></label>
-                    <input
+                    <CommonPhoneInput
                       id="phone"
                       v-model="form.phone"
-                      type="tel"
-                      name="phone"
-                      required
-                      class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                      class="mt-1"
                       :placeholder="$t('call_modal.phone_placeholder')"
-                      :class="{ 'border-red-500': errors.phone }"
+                      :invalid="!!errors.phone"
                       aria-describedby="phone-help"
-                    >
-                    <p v-if="errors.phone" class="mt-1 text-xs text-red-500">
+                    />
+                    <p v-if="errors.phone" id="phone-help" class="mt-1 text-xs text-red-500">
                       {{ errors.phone }}
                     </p>
                   </div>
@@ -200,13 +197,14 @@ function validateForm() {
     errors.name = ''
   }
 
-  // Проверка телефона
-  if (!form.value.phone.trim()) {
+  // Проверка телефона: нормализованный формат +XXXXXXXXXX (10–15 цифр)
+  const phoneNormalized = form.value.phone.trim()
+  if (!phoneNormalized) {
     errors.phone = 'Пожалуйста, укажите номер телефона.'
     isValid = false
   } else {
-    const phoneRegex = /^[\+]?[0-9\s\-\(\)]{7,15}$/ // Простая валидация
-    if (!phoneRegex.test(form.value.phone.trim())) {
+    const phoneRegex = /^\+[0-9]{10,15}$/
+    if (!phoneRegex.test(phoneNormalized)) {
       errors.phone = 'Введите корректный номер телефона.'
       isValid = false
     } else {
