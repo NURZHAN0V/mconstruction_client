@@ -109,6 +109,9 @@
                       </p>
                     </div>
                   </div>
+                  <p v-if="errors.submit" class="text-sm text-red-500">
+                    {{ errors.submit }}
+                  </p>
                 </form>
               </div>
 
@@ -162,9 +165,8 @@ const errors = reactive({
   name: '',
   phone: '',
   agreed: '',
+  submit: '',
 })
-
-const { sendMessage } = useTelegram()
 
 const form = ref({
   name: '',
@@ -184,6 +186,7 @@ function resetForm() {
   errors.name = ''
   errors.phone = ''
   errors.agreed = ''
+  errors.submit = ''
 }
 
 function validateForm() {
@@ -228,21 +231,24 @@ async function handleSubmit() {
   }
 
   loading.value = true
+  errors.submit = ''
 
   try {
-    const message = `
-<b>Новая заявка на звонок!</b>
-<b>Имя:</b> ${form.value.name}
-<b>Телефон:</b> ${form.value.phone}
-`
-    await sendMessage(message)
-
-    // Сброс формы и закрытие
+    await $fetch('/api/callback', {
+      method: 'POST',
+      body: { name: form.value.name.trim(), phone: form.value.phone.trim() },
+    })
     resetForm()
     emit('close')
-  } catch (err) {
-    console.error('Ошибка при отправке:', err)
-    // Можно показать уведомление об ошибке
+  } catch (err: unknown) {
+    const msg =
+      err && typeof err === 'object' && 'data' in err && err.data && typeof (err.data as { message?: string }).message === 'string'
+        ? (err.data as { message: string }).message
+        : err && typeof err === 'object' && 'statusMessage' in err && typeof (err as { statusMessage: string }).statusMessage === 'string'
+          ? (err as { statusMessage: string }).statusMessage
+          : 'Не удалось отправить заявку. Попробуйте позже.'
+    errors.submit = msg
+    console.error('Ошибка при отправке заявки на звонок:', err)
   } finally {
     loading.value = false
   }

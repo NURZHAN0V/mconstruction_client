@@ -217,10 +217,10 @@ export default defineEventHandler(async (event) => {
       })
     }
 
-    // Получаем конфигурацию
+    // Получаем конфигурацию (только серверные ключи)
     const config = useRuntimeConfig()
-    const telegramBotToken = config.telegramBotToken || config.public?.telegramBotToken
-    const telegramChatIds = config.telegramChatIds || config.public?.telegramChatIds
+    const telegramBotToken = config.telegramBotToken
+    const telegramChatIds = config.telegramChatIds
 
     if (!telegramBotToken || !telegramChatIds) {
       console.error('Переменные окружения Telegram не установлены')

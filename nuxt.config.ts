@@ -9,9 +9,9 @@ export default defineNuxtConfig({
   },
   css: ['~/assets/css/main.css'],
   modules: ['@nuxt/scripts', '@nuxt/image', '@nuxt/fonts', '@pinia/nuxt', '@nuxtjs/i18n', '@nuxtjs/seo', '@nuxt/icon', '@nuxtjs/tailwindcss'],
-  future: {
-    compatibilityVersion: 4
-  },
+  // future: {
+  //   compatibilityVersion: 4
+  // },
   image: {
     domains: ['k-m-construction.com', 'placehold.net'],
     quality: 80,
@@ -66,7 +66,7 @@ export default defineNuxtConfig({
                     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
                     font-src 'self' https://fonts.gstatic.com;
                     img-src 'self' data: https: blob:;
-                    connect-src 'self' https: ws: wss: https://www.google-analytics.com https://mc.yandex.ru https://api.telegram.org;
+                    connect-src 'self' https: ws: wss: https://www.google-analytics.com https://mc.yandex.ru;
                     frame-src 'self' https://www.google.com https://mc.yandex.ru;`
         }
       ],
@@ -96,9 +96,7 @@ export default defineNuxtConfig({
     compressPublicAssets: true
   },
   runtimeConfig: {
-    public: {
-      telegramBotToken: process.env.NUXT_PUBLIC_TELEGRAM_BOT_TOKEN || '',
-      telegramChatIds: process.env.NUXT_PUBLIC_TELEGRAM_CHAT_IDS || ''
-    },
+    telegramBotToken: process.env.NUXT_TELEGRAM_BOT_TOKEN || '',
+    telegramChatIds: process.env.NUXT_TELEGRAM_CHAT_IDS || '',
   },
 })
